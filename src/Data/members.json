@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Nikitha",
+    "DOB": "05-jul-1995",
+    "DOJ": "1-mar-2023",
+    "package": "quarterly",
+    "amountpaid": 8000
+  },
+  {
+    "name": "Ankit",
+    "DOB": "03-jul-1995",
+    "DOJ": "1-mar-2023",
+    "package": "Annual",
+    "amountpaid": 25000
+  },
+  {
+    "name": "Lalith",
+    "DOB": "29-jul-1995",
+    "DOJ": "1-mar-2023",
+    "package": "Monthly",
+    "amountpaid": 3000
+  },
+  {
+    "name": "Krithik",
+    "DOB": "29-jul-1995",
+    "DOJ": "1-mar-2023",
+    "package": "Monthly",
+    "amountpaid": 3000
+  },
+  {
+    "name": "Goutam",
+    "DOB": "29-jul-1995",
+    "DOJ": "1-mar-2023",
+    "package": "Monthly",
+    "amountpaid": 3000
+  },
+  {
+    "name": "Chilash",
+    "DOB": "29-jul-1995",
+    "DOJ": "1-mar-2023",
+    "package": "Monthly",
+    "amountpaid": 3000
+  },
+
+  {
+    "name": "Praveen",
+    "DOB": "29-jul-1995",
+    "DOJ": "1-mar-2023",
+    "package": "Monthly",
+    "amountpaid": 3000
+  }
+]

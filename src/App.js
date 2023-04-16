@@ -1,50 +1,26 @@
-import React, { Component } from "react"
-import logo from "./logo.svg"
-import "./App.css"
-
-class LambdaDemo extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { loading: false, msg: null }
-  }
-
-  handleClick = api => e => {
-    e.preventDefault()
-
-    this.setState({ loading: true })
-    fetch("/.netlify/functions/" + api)
-      .then(response => response.json())
-      .then(json => this.setState({ loading: false, msg: json.msg }))
-  }
-
-  render() {
-    const { loading, msg } = this.state
-
+import './App.scss';
+import DesignWorkoutPage from './Pages/DesignWorkoutPage'
+import ViewMembersInfo from './Pages/ViewMembersInfo'
+import GetMemberInfo from './Pages/getMemberInfo';
+import Header from "./Components/Header";
+import Home from "./Pages/Home";
+// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  Routes,
+  Route
+} from "react-router-dom";
+function App() {
     return (
-      <p>
-        <button onClick={this.handleClick("hello")}>{loading ? "Loading..." : "Call Lambda"}</button>
-        <button onClick={this.handleClick("async-dadjoke")}>{loading ? "Loading..." : "Call Async Lambda"}</button>
-        <br />
-        <span>{msg}</span>
-      </p>
-    )
-  }
+    <div className="App">
+      <Header />
+        <Routes>
+          {/* <Route index element={<Home />} /> */}
+          <Route path="designworkout" element={<DesignWorkoutPage />}></Route>
+          <Route path="addnewmember" element={<GetMemberInfo />}></Route>
+          <Route path="viewmemberdetails" element={<ViewMembersInfo />}></Route>
+        </Routes>
+    </div>
+  );
 }
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <LambdaDemo />
-        </header>
-      </div>
-    )
-  }
-}
-
-export default App
+export default App;
