@@ -25,6 +25,7 @@ function DesignWorkoutPage() {
 
   const [workout_arr, setWorkout_arr] = useState([]);
   const [workout_obj, setWorkout_obj] = useState({});
+  const [activebtn, setActivebtn] = useState(true);
 
 
   const handleChange = (event) => {
@@ -60,6 +61,13 @@ function DesignWorkoutPage() {
     workout_obj['laps'] = laps;
 
     return workout_obj
+  }
+  const pcallback=(weeklyWorkout)=>{
+console.log('inside parent call backkk',weeklyWorkout)
+if(weeklyWorkout.length==5)
+setActivebtn(false) 
+else if(weeklyWorkout.length<1)
+setActivebtn(true)
   }
   return (
     <div className="workout-layout">     
@@ -143,14 +151,14 @@ function DesignWorkoutPage() {
             onChange={(e) => setLaps(e.target.value)}
           />
         </div>
-        <Button className="btn-style" variant="contained" onClick={handleClick}>
+      { activebtn&& <Button className="btn-style" variant="contained" onClick={handleClick}>
         Frame Workout
-      </Button>
+      </Button>}
       </div>
 
 
 
-      <Card workout_obj={workout_obj} />
+      <Card workout_obj={workout_obj} pcallback={pcallback}/>
     </div>
   );
 }

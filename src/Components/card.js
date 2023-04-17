@@ -7,7 +7,9 @@ import Timeline from "./Timeline";
 
 function Card(props) {
   // console.log(props)
-  const [weeklyWorkout, setWeeklyWorkout] = useState([]);
+  let [weeklyWorkout, setWeeklyWorkout] = useState([]);
+  const [multiWeekArr, setMultiWeekArr] = useState([]);
+
   const [showSave, setShowsave] = useState(true);
   const [successMsg, setsuccessMsg] = useState('Added workout for');
   const [days, setdays] = useState(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']);
@@ -21,6 +23,18 @@ function Card(props) {
     setShowsave(true)
   }, [workoutList])
 
+  useEffect(() => {
+    if (weeklyWorkout)
+    console.log(weeklyWorkout)
+  }, [weeklyWorkout])
+
+const storeWeeklyWorkouts=()=>{
+  multiWeekArr.push(weeklyWorkout)
+  setMultiWeekArr([...multiWeekArr])
+  setWeeklyWorkout([])
+  weeklyWorkout=[]
+  props.pcallback(weeklyWorkout)
+}
   const addWorkoutHandle = () => {
 
 
@@ -28,7 +42,8 @@ function Card(props) {
     setWeeklyWorkout([...weeklyWorkout])
     setShowsave(false)
 
-    console.log('weeklyWorkout:::', weeklyWorkout)
+    // console.log('weeklyWorkout:::', weeklyWorkout)
+    props.pcallback(weeklyWorkout)
   }
   const saveWorkouthandle = () => {
     setWeeklyWorkout([])
@@ -40,44 +55,44 @@ function Card(props) {
   }
   return (
     <>
-    <div className="card-timeline-container">
-      {workoutList && workoutList.length > 0 && <div><div className="card-style">
-      <div className="card-heading"> <div>*{days[weeklyWorkout.length] +' '+workout_obj.workouttype} Workout *</div> {showSave && <img src="assets/images/add-workout.svg" alt="logo image" onClick={async () => { addWorkoutHandle() }} />}</div>
-        <ol>
+      <div className="card-timeline-container">
+        {workoutList && workoutList.length > 0 && <div><div className="card-style">
+          <div className="card-heading"> <div>*{days[weeklyWorkout.length] + ' ' + workout_obj.workouttype} Workout *</div> {showSave && <img src="assets/images/add-workout.svg" alt="logo image" onClick={async () => { addWorkoutHandle() }} />}</div>
+          <ol>
 
-          {workout_obj.workouts.map((workout, i) => {
-            return <li
-              key={i}>{workout}</li>;
-          })}
-        </ol>
-        <div className="timing-style">
-          <div>
-            <p>
-              ON time:{' ' + workout_obj.onTime}
-            </p>
-            <p>
-              OFF time:{' ' + workout_obj.offTime}
-            </p>
-          </div>
-          <div>
-            <p>
-              Sets:{' ' + workout_obj.sets}
-            </p>
-            <p>
-              Laps :{' ' + workout_obj.laps}
-            </p>
+            {workout_obj.workouts.map((workout, i) => {
+              return <li
+                key={i}>{workout}</li>;
+            })}
+          </ol>
+          <div className="timing-style">
+            <div>
+              <p>
+                ON time:{' ' + workout_obj.onTime}
+              </p>
+              <p>
+                OFF time:{' ' + workout_obj.offTime}
+              </p>
+            </div>
+            <div>
+              <p>
+                Sets:{' ' + workout_obj.sets}
+              </p>
+              <p>
+                Laps :{' ' + workout_obj.laps}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-        {!showSave && weeklyWorkout.length > 0 && <p className="success-style">{successMsg + ' ' + days[weeklyWorkout.length - 1] + '!'}</p>}
-      </div>
-      }
-      <Timeline
-        workoutList={workoutList}
-        weeklyWorkout={weeklyWorkout}
-        days={days} />
+          {!showSave && weeklyWorkout.length > 0 && <p className="success-style">{successMsg + ' ' + days[weeklyWorkout.length - 1] + '!'}</p>}
         </div>
-       <SaveActions weeklyWorkout={weeklyWorkout}/>
+        }
+        <Timeline
+          workoutList={workoutList}
+          weeklyWorkout={weeklyWorkout}
+          days={days} />
+      </div>
+      <SaveActions weeklyWorkout={weeklyWorkout} multiWeekArr={multiWeekArr} storeWeeklyWorkouts={storeWeeklyWorkouts}/>
     </>
   )
 }
