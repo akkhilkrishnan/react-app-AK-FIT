@@ -7,48 +7,58 @@ import { Navbar, Nav } from "react-bootstrap";
 import Button from "@mui/material/Button";
 
 function Header() {
-  const [menuList, setMenuList] = useState([{
-    "name": "Design Workout",
-    'active': false
-  }, {
-    "name": "Add New Member",
-    'active': false
-  }, {
-    "name": "View Member Details",
-    'active': true
-  }, {
-    "name": "View Graph",
-    'active': true
-  }]
-  )
-  // const menuList =
-  const [activeTab, setActiveTab] = useState('Design Workout')
+  const [menuList, setMenuList] = useState(['Design Workout','Add New Member','View Member Details','Add Workouts'])
+//   const [menuList, setMenuList] = useState([{
+//     "name": "Design Workout",
+//     'active': false
+//   }, {
+//     "name": "Add New Member",
+//     'active': false
+//   }, {
+//     "name": "View Member Details",
+//     'active': true
+//   }, 
+//   {
+//     "name": "Add Workouts",
+//     'active': true
+//   }
+//   {
+//     "name": "Add Workouts",
+//     'active': true
+//   }
+// ]
+//   )
+  const [activeTab, setActiveTab] = useState('Home')
 
-  let className
   const handleClick = (menuName) => {
   setActiveTab(menuName)
   }
+  const handleLogoCLick = () => {
+    setActiveTab('/home')
+
+    }
+  
   return (
     <div className="header">
-      <div className="home-logo">
-        <a href="/" />
+      <Link to="home" className="home-logo" onClick={()=>handleLogoCLick}>
         <img src="assets/images/logo.svg" alt="logo image" />
-
         <span>AK-FIT</span>
-      </div>
+      </Link>
+      <div className="menu-container">
       <Navbar>
         <Nav>
           <ul>
             {menuList.map((menuItem, index) => {
               // console.log('seletesds:::', selected[index])
-              return (<li className={menuItem.name==activeTab ? 'selected-style' : ''} key={index}> <Link to={menuItem.name.toLowerCase().replace(/ /g, '')} onClick={() => {
-                handleClick(menuItem.name);
-              }}>{menuItem.name}</Link></li>)
+              return (<li className={menuItem==activeTab ? 'selected-style' : ''} key={index}> <Link to={menuItem.toLowerCase().replace(/ /g, '')} onClick={() => {
+                handleClick(menuItem);
+              }}>{menuItem}</Link></li>)
             })}
 
           </ul>
         </Nav>
       </Navbar>
+      </div>
       <div className="search-container">
         {/* <div className="search-box">
                <input class="mainLoginInput" type="text" placeholder="&#61442; Search on Marketplace"/>

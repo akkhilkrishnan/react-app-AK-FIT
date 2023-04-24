@@ -3,14 +3,14 @@ import React from "react";
 
 
 function Timeline(props){
-  const   {days,workoutList,weeklyWorkout}=props;
+  const   {days,workoutList,oneWeekWorkout}=props;
 //   const ref = useRef();
 
     return(
         <>
         {workoutList && workoutList.length > 0 && <div className="timeline-style">
         <div className="line-style"></div>
-        <div className="sec-line-style" style={{ height: `${(weeklyWorkout.length) * 100}px`}}>
+        <div className="sec-line-style" style={{ height: `${(oneWeekWorkout.length) * 100}px`}}>
           <div >
             <span className="first-dot">
               <img src="assets/images/sun.svg" alt="logo image" />

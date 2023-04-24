@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import workouts from "../Data/workouts.json";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -12,10 +12,11 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
-
 function DesignWorkoutPage() {
   let workoutListArr = [];
+
   const [workout_type, setWorkout_type] = useState("cardio");
+  const [workoutSpec, setWorkoutSpec] = useState("bodyweight");
   const [noOfWorkouts, setNoOfWorkouts] = useState(8);
   const [onTime, setOnTime] = useState(40);
   const [offTime, setOffTime] = useState(20);
@@ -24,55 +25,70 @@ function DesignWorkoutPage() {
 
 
   const [workout_arr, setWorkout_arr] = useState([]);
-  const [workout_obj, setWorkout_obj] = useState({});
-  const [activebtn, setActivebtn] = useState(true);
-
+  let [workout_obj, setWorkout_obj] = useState({});
+  const [activebtn, setActivebtn] = useState(false);
+  const [multiArrayLength, setMultiArrayLength] = useState(0);
+  useEffect(() => {
+    setActivebtn(true)
+  }, [])
 
   const handleChange = (event) => {
     setWorkout_type(event.target.value);
     console.log(event.target.value);
   };
-  const generateWorkout = () => {
+  const validateWorkout = (workoutList, workout) => {
+    let splitWorkoutList = []
+    workoutList.map((item) => {
+      splitWorkoutList = splitWorkoutList.concat(item.split(' '))
+    })
 
-    // console.log('sdasda', workouts)
+    let splitWorkoutName = workout.split(' ')
+
+    // console.log('testt::',splitWorkoutName, splitWorkoutList)
+
+    console.log(splitWorkoutList.includes(splitWorkoutName[1]))
+    return splitWorkoutName.some((item) => splitWorkoutList.includes(item))
+  }
+  const generateWorkout = () => {
     for (let i = 0; i < noOfWorkouts; i++) {
-      // console.log('sdasda', workouts)
       let workout =
         workouts[workout_type][
         Math.floor(Math.random() * workouts[workout_type].length)
         ];
-      if (workoutListArr.includes(workout)) i = i - 1;
+      if (workoutListArr.includes(workout) || validateWorkout(workoutListArr, workout)) i = i - 1;
       else workoutListArr.push(workout);
     }
     return workoutListArr
   }
   const handleClick = () => {
-
     setWorkout_arr(generateWorkout());
+    // workout_obj={}
     mapToObject(workout_arr)
     workoutListArr = [];
   };
   const mapToObject = (arr) => {
+    let obj = {}
     workout_obj['workouttype'] = workout_type;
     workout_obj['workouts'] = arr;
     workout_obj['onTime'] = onTime;
     workout_obj['offTime'] = offTime;
     workout_obj['sets'] = sets;
     workout_obj['laps'] = laps;
-
-    return workout_obj
+    obj = workout_obj
+    return obj
   }
-  const pcallback=(weeklyWorkout)=>{
-console.log('inside parent call backkk',weeklyWorkout)
-if(weeklyWorkout.length==5)
-setActivebtn(false) 
-else if(weeklyWorkout.length<1)
-setActivebtn(true)
+  const pcallback = (oneWeekWorkout, multiArrayLength) => {
+    setMultiArrayLength(multiArrayLength)
+    console.log('inside parent call backkk', oneWeekWorkout, multiArrayLength)
+    if (oneWeekWorkout.length == 5 || multiArrayLength.length == 4)
+      setActivebtn(false)
+    else if (oneWeekWorkout.length == 0)
+      setActivebtn(true)
   }
   return (
-    <div className="workout-layout">     
+    <div className="workout-layout">
       <div className="type-style">
-      {/* <h2>Workout Designer</h2> */}
+        {/* <h2>Workout Designer</h2> */}
         <FormControl >
           <InputLabel id="demo-simple-select-label">Workout Type</InputLabel>
           <Select
@@ -95,17 +111,11 @@ setActivebtn(true)
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
+            value={workoutSpec}
           >
-            <FormControlLabel value="bodyweight" control={<Radio />} label="Body Weight" />
+            <FormControlLabel value="bodyweight" control={<Radio />} label="Body Weight" onChange={(e) => setWorkoutSpec(e.target.value)} />
             <FormControlLabel value="equipment" control={<Radio />} label="Equipment Based" />
             <FormControlLabel value="both" control={<Radio />} label="Combined" />
-            <FormControlLabel
-              value="disabled"
-              disabled
-              control={<Radio />}
-              label="other"
-              size={'small'}
-            />
           </RadioGroup>
         </FormControl>
         <div className="input-field-style">
@@ -114,7 +124,7 @@ setActivebtn(true)
             label="No of workouts"
             type="number"
             size={"small"}
-            value={noOfWorkouts }
+            value={noOfWorkouts}
             onChange={(e) => setNoOfWorkouts(e.target.value)}
           />
 
@@ -125,6 +135,7 @@ setActivebtn(true)
             label="On Time"
             type="number"
             size={"small"}
+            value={onTime}
             onChange={(e) => setOnTime(e.target.value)}
           />
           <TextField
@@ -132,6 +143,7 @@ setActivebtn(true)
             label="Off Time"
             type="number"
             size={"small"}
+            value={offTime}
             onChange={(e) => setOffTime(e.target.value)}
           />
         </div>
@@ -141,6 +153,7 @@ setActivebtn(true)
             label="Sets"
             type="number"
             size={"small"}
+            value={sets}
             onChange={(e) => setSets(e.target.value)}
           />
           <TextField
@@ -148,17 +161,16 @@ setActivebtn(true)
             label="Laps"
             type="number"
             size={"small"}
+            value={laps}
             onChange={(e) => setLaps(e.target.value)}
           />
         </div>
-      { activebtn&& <Button className="btn-style" variant="contained" onClick={handleClick}>
-        Frame Workout
-      </Button>}
+        {activebtn && <Button className="btn-style" variant="contained" onClick={handleClick}>
+          Frame Workout
+        </Button>}
+        {(multiArrayLength.length == 4 && !activebtn) ? <div className="success-style"> saved workout for the month</div> : <></>}
       </div>
-
-
-
-      <Card workout_obj={workout_obj} pcallback={pcallback}/>
+      <Card workout_obj={workout_obj} pcallback={pcallback} />
     </div>
   );
 }

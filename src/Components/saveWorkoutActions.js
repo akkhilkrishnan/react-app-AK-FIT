@@ -1,24 +1,48 @@
-import React from "react";
+import React,  { useEffect, useState }from "react";
 import Button from "@mui/material/Button";
+import ModalComponent from "./ModalComponent";
 
 function SaveActions(props) {
-  const { weeklyWorkout, multiWeekArr } = props
+  const { oneWeekWorkout, multiWeekArr } = props
+  let [weekWorkout, setWeekWorkout] = useState([]);
+  let [showWorkouts, setShowWorkouts] = useState(false);
+let [isOpen, setIsOpen]=useState(false)
   const handleWeekButton = (i) => {
-    console.log('indexx', i)
-  }
 
-  return (<> <div className="save-btn-container">
+    console.log('indexx', multiWeekArr[i])
+    openModal()
+    setWeekWorkout(multiWeekArr[i])
+    setShowWorkouts(true)
+  }
+const handleSaveWorkouts=()=>{
+  props.storeoneWeekWorkouts()
+}
+const openModal=()=>{
+setIsOpen(true)
+}
+const closeModal = (flag) => {
+  if(!flag)
+  setIsOpen(false)
+  console.log('closee', isOpen)
+}
+  return (<><div className="btn-container"> <div className="save-btn-container">
     {
 
-      (weeklyWorkout && weeklyWorkout.length == 5) && <Button className="save-btn" variant="contained" onClick={() => props.storeWeeklyWorkouts()}>
+      <Button className="save-btn" variant="contained" disabled={!(oneWeekWorkout && oneWeekWorkout.length == 5)} onClick={handleSaveWorkouts}>
         Save workouts
       </Button>
     }
+      </div>
+    <div className="week-btn-container">
+      <h3>WEEKLY WORKOUTS</h3>
     {(multiWeekArr && multiWeekArr.length >= 1) ? multiWeekArr.map((week, index) => {
-      return (<div className="week-btn-style"><Button variant='contained'onClick={handleWeekButton}>{'week ' + (index+1)+' workouts'}</Button></div>)
+      return (<div className="week-btn-style"><Button variant='contained'onClick={()=>handleWeekButton(index)}>{'week ' + (index+1)+' workouts'}</Button></div>)
     }) : <></>
 
     }
-  </div></>)
+    </div>
+</div>
+ <ModalComponent openModal={isOpen} weekWorkout={weekWorkout} closeModal={closeModal}/>
+        </>)
 }
 export default SaveActions

@@ -24,7 +24,7 @@ function GetMemberInfo() {
       .then((response) => {
         return response.json();
       })
-      .then((msg) => console.log(msg));
+      .then((msg) => console.log('resposnse:::',msg));
   }
   const addMemberHandle = (member) => {
     console.log(member)

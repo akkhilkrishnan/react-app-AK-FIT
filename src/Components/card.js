@@ -1,98 +1,106 @@
 
-import React, { useEffect, useState } from "react";
-import { colors } from "@mui/material";
-// import Timeline from "./Timeline";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import SaveActions from "./saveWorkoutActions";
 import Timeline from "./Timeline";
+import { workoutContext } from "../Context/TimerContext";
+import structuredClone from '@ungap/structured-clone';
 
+var oneWeekWorkoutArr = []
 function Card(props) {
-  // console.log(props)
-  let [weeklyWorkout, setWeeklyWorkout] = useState([]);
+
+
+  let [oneWeekWorkout, setOneWeekWorkout] = useState([]);
+
+  let [oneWeek, setOneWeek] = useState([]);
+
   const [multiWeekArr, setMultiWeekArr] = useState([]);
+  const [addFlag, setAddFlag] = useState(false);
+
 
   const [showSave, setShowsave] = useState(true);
+  // const [addFlag, setAddFlag] = useState(false);
+
   const [successMsg, setsuccessMsg] = useState('Added workout for');
   const [days, setdays] = useState(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']);
 
-  const { workout_obj } = props
-  console.log('workout bject:::', workout_obj)
-  let workoutArr = [];
+  let workout_obj = {}
+  workout_obj = props.workout_obj
   let workoutList = workout_obj.workouts
 
   useEffect(() => {
     setShowsave(true)
-  }, [workoutList])
+    if (addFlag && workoutList!=[]) {
+      oneWeekWorkoutArr.push(structuredClone(workout_obj))
+      setOneWeekWorkout(oneWeekWorkoutArr)
+      props.pcallback(oneWeekWorkout, multiWeekArr.length)
+      setAddFlag(false)
+    }
 
-  useEffect(() => {
-    if (weeklyWorkout)
-    console.log(weeklyWorkout)
-  }, [weeklyWorkout])
+  }, [workoutList,addFlag])
 
-const storeWeeklyWorkouts=()=>{
-  multiWeekArr.push(weeklyWorkout)
-  setMultiWeekArr([...multiWeekArr])
-  setWeeklyWorkout([])
-  weeklyWorkout=[]
-  props.pcallback(weeklyWorkout)
-}
+
+  const storeoneWeekWorkouts = () => {
+    multiWeekArr.push(oneWeekWorkout)
+    setMultiWeekArr([...multiWeekArr])
+    console.log('mmultiwekkk::::', multiWeekArr)
+    setOneWeekWorkout([])
+    oneWeekWorkout = []
+    oneWeekWorkoutArr=[]
+    props.pcallback(oneWeekWorkout, multiWeekArr)
+  }
+
   const addWorkoutHandle = () => {
-
-
-    weeklyWorkout.push(workout_obj)
-    setWeeklyWorkout([...weeklyWorkout])
+    console.log('oneWeekWorkout::::',oneWeekWorkout)
     setShowsave(false)
+    setAddFlag(true)
+    // props.pcallback(oneWeekWorkout, multiWeekArr.length)
+  }
 
-    // console.log('weeklyWorkout:::', weeklyWorkout)
-    props.pcallback(weeklyWorkout)
-  }
-  const saveWorkouthandle = () => {
-    setWeeklyWorkout([])
-  }
-  const calculateHeight = () => {
-    console.log(weeklyWorkout.length * 100)
-    return 600
-
-  }
   return (
     <>
       <div className="card-timeline-container">
-        {workoutList && workoutList.length > 0 && <div><div className="card-style">
-          <div className="card-heading"> <div>*{days[weeklyWorkout.length] + ' ' + workout_obj.workouttype} Workout *</div> {showSave && <img src="assets/images/add-workout.svg" alt="logo image" onClick={async () => { addWorkoutHandle() }} />}</div>
-          <ol>
+        <div>
+          <div className="card-style">
+          <div className="card-heading"> <div>*{days[oneWeekWorkout.length] + ' ' + workout_obj.workouttype} Workout *</div> 
+          {showSave && <img src="assets/images/add-workout.svg" alt="logo image" onClick={addWorkoutHandle} />}
 
-            {workout_obj.workouts.map((workout, i) => {
-              return <li
-                key={i}>{workout}</li>;
-            })}
-          </ol>
-          <div className="timing-style">
-            <div>
-              <p>
-                ON time:{' ' + workout_obj.onTime}
-              </p>
-              <p>
-                OFF time:{' ' + workout_obj.offTime}
-              </p>
             </div>
-            <div>
-              <p>
-                Sets:{' ' + workout_obj.sets}
-              </p>
-              <p>
-                Laps :{' ' + workout_obj.laps}
-              </p>
-            </div>
+            {workoutList && workoutList.length > 0 ?
+              <ol>
+
+                {workout_obj.workouts.map((workout, i) => {
+                  return <li
+                    key={i}>{workout}</li>;
+                })}
+              </ol> : <div className="fallback-msg">Frame workout for the day</div>}
+            {workoutList && workoutList.length > 0 && <div className="timing-style">
+              <div>
+                <p>
+                  ON time:{' ' + workout_obj.onTime}
+                </p>
+                <p>
+                  OFF time:{' ' + workout_obj.offTime}
+                </p>
+              </div>
+              <div>
+                <p>
+                  Sets:{' ' + workout_obj.sets}
+                </p>
+                <p>
+                  Laps :{' ' + workout_obj.laps}
+                </p>
+              </div>
+            </div>}
           </div>
+          {!showSave && oneWeekWorkout.length > 0 && <p className="success-style">{successMsg + ' ' + days[oneWeekWorkout.length - 1] + '!'}</p>}
         </div>
-          {!showSave && weeklyWorkout.length > 0 && <p className="success-style">{successMsg + ' ' + days[weeklyWorkout.length - 1] + '!'}</p>}
-        </div>
-        }
+
         <Timeline
           workoutList={workoutList}
-          weeklyWorkout={weeklyWorkout}
+          oneWeekWorkout={oneWeekWorkout}
           days={days} />
       </div>
-      <SaveActions weeklyWorkout={weeklyWorkout} multiWeekArr={multiWeekArr} storeWeeklyWorkouts={storeWeeklyWorkouts}/>
+      <SaveActions oneWeekWorkout={oneWeekWorkout} multiWeekArr={multiWeekArr} storeoneWeekWorkouts={storeoneWeekWorkouts} />
     </>
   )
 }

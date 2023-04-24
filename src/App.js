@@ -4,22 +4,46 @@ import ViewMembersInfo from './Pages/ViewMembersInfo'
 import GetMemberInfo from './Pages/getMemberInfo';
 import Header from "./Components/Header";
 import Home from "./Pages/Home";
+import {TimerContext} from './Context/TimerContext';
+// import ModalApp from './Components/modall';
 // import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import {
   Routes,
   Route
 } from "react-router-dom";
+import { useState, useEffect, useContext } from 'react';
+import Timer from './Components/Timer';
+import ModalApp from './Components/modall';
+
 function App() {
-    return (
+  const [timerTrigger, setTimerTrigger] = useState(false);
+  const [timerArr, setTimerArr] = useState([]);
+
+// let timerArr=[]
+  // let timerTrigger=useContext(TimerContext)
+  console.log('context:::', timerTrigger,TimerContext,timerArr)
+
+  return (
+    <TimerContext.Provider value={{timerTrigger,setTimerTrigger,timerArr}}>
     <div className="App">
-      <Header />
-        <Routes>
-          {/* <Route index element={<Home />} /> */}
-          <Route path="designworkout" element={<DesignWorkoutPage />}></Route>
-          <Route path="addnewmember" element={<GetMemberInfo />}></Route>
-          <Route path="viewmemberdetails" element={<ViewMembersInfo />}></Route>
-        </Routes>
+      {!timerTrigger?<div><Header />
+      <Routes>
+        <Route path="home" element={<Home />} />
+        <Route path="home/designworkout" element={<DesignWorkoutPage />}></Route>
+        <Route path="designworkout" element={<DesignWorkoutPage />}></Route>
+        <Route path="home/addnewmember" element={<GetMemberInfo />}></Route>
+        <Route path="addnewmember" element={<GetMemberInfo />}></Route>
+        <Route path="home/viewmemberdetails" element={<ViewMembersInfo />}></Route>
+        <Route path="viewmemberdetails" element={<ViewMembersInfo />}></Route>
+      </Routes></div>
+:
+      <Timer array={timerArr}/>}
+
     </div>
+
+     </TimerContext.Provider>
+
+
   );
 }
 

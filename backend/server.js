@@ -24,21 +24,12 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 const { MongoClient, ServerApiVersion } = require("mongodb");
-// import{MongoClient} from 'mongodb';
-// const mongoose=require('mangoose');
-// const client = new MongoClient('mongodb+srv://akkhilcoder:akdb123@cluster0.1bzifad.mongodb.net/test')
-const client = new MongoClient('mongodb+srv://akkhilcoder:akdb123@cluster0.1bzifad.mongodb.net/test')
-// const connectDB=async ()=>{
-//   mongoose.connect('mongodb+srv://akkhilcoder:akdb123@cluster0.1bzifad.mongodb.net/test');
-//   const productSchema=new mongoose.Schema({});
-//   const product=mongoose.modal('members', productSchema)
-  
-//   client.db().collection('members').find({}).toArray();
-//   const data=await product.find();
-//   console.warn(data)
 
-// }
+const client = new MongoClient('mongodb+srv://akkhilcoder:akdb123@cluster0.1bzifad.mongodb.net/test')
 var data;
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 async function run() {
   try {
     // Connect the client to the server (optional starting in v4.7)
@@ -49,13 +40,32 @@ async function run() {
      data=await client.db('Members').collection('Members').find().toArray()
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 run().catch(console.dir);
 app.get("/data", (req,res)=>{
-  console.log(req,res)
+  
   res.send(data);
+})
+app.post("/data",(req,res)=>{
+// res.send({"name":"Krishna","DOB":"05-jul-1995","DOJ":"1-mar-2023","package":"quarterly","amountpaid":8000})
+let data = req.body;
+run().catch(console.dir);
+let memberDetails={
+  name:data.name,
+  DOB:data.dob,
+  DOJ:data.joiningdate,
+  package:data.subscription,
+  amountpaid:data.amountpaid,
+  instaid:data.insta?data.insta:'',
+  phnnumber:data.phnnumber?data.phnnumber:'',
+  email:data.email?data.email:'',
+
+}
+client.db('Members').collection('Members').insertOne(memberDetails,(err,info)=>{
+  res.send(info)
+})
 })
 app.listen(5000, () => {
   // perform a database connection when server starts
