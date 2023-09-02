@@ -17,14 +17,14 @@ import ModalApp from './Components/modall';
 
 function App() {
   const [timerTrigger, setTimerTrigger] = useState(false);
-  const [timerArr, setTimerArr] = useState([]);
+  let [timerArr, setTimerArr] = useState([]);
 
 // let timerArr=[]
   // let timerTrigger=useContext(TimerContext)
   console.log('context:::', timerTrigger,TimerContext,timerArr)
 
   return (
-    <TimerContext.Provider value={{timerTrigger,setTimerTrigger,timerArr}}>
+    <TimerContext.Provider value={{timerTrigger,setTimerTrigger,timerArr,setTimerArr}}>
     <div className="App">
       {!timerTrigger?<div><Header />
       <Routes>

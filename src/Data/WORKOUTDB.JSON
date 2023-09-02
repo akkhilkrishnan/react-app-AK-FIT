@@ -1,0 +1,521 @@
+[{
+    "bodyweight": {
+        "cardio": {
+            "upperbody": [
+                {
+                    "name": "360 deg jump squats",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "A steps",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Ape walk",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Broad jump + shuffle back",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Broad jumps",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Burpees",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Corkscrew",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Cross mountian climbers",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Donkey kicks",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Double fast feet",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Double foot mountain climbers",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Drop squats",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Fast feet",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Forward jump and shuffle back",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Full body taps",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Glute kicks",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Half burpees",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "High knee punches",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Highknees",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Highland jacks",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Ice skater burpees",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Ice skaters",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Jugglers",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Jumping jacks",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Jumping squats",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Karoke squats",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Lateral shoot throughs",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Lunge toe taps",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Mountain climbers",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Plank jacks",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Plyo lunges",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Pole to pole run",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Power jacks",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Predator jacks",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Reverse burpees",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Reverse plank toe taps",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Reverse toe taps from high plank",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Shoeshine",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Shuffles",
+                    "desc": "",
+                    "videoUrl": ""
+                }
+               
+                
+            ],
+            "lowerbody": [{
+                "name": "Sprinter jump",
+                "desc": "",
+                "videoUrl": ""
+            },
+            {
+                "name": "Tuck jumps",
+                "desc": "",
+                "videoUrl": ""
+            },
+            {
+                "name": "Side to side shuffles",
+                "desc": "",
+                "videoUrl": ""
+            },
+            {
+                "name": "Side to side sprawls",
+                "desc": "",
+                "videoUrl": ""
+            },
+            {
+                "name": "Skip jumps",
+                "desc": "",
+                "videoUrl": ""
+            },
+            {
+                "name": "Spider climbers",
+                "desc": "",
+                "videoUrl": ""
+            },
+            {
+                "name": "Sprawls",
+                "desc": "",
+                "videoUrl": ""
+            }]
+        },
+        "strength": {
+            "upperbody": [
+                {
+                    "name": "Archer pushups",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Beast pushups",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Beast to pushups",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Bird dog",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Crab walk",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Curtsy lunges",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Deadbug swing",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Diamond pushups",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Dolphins",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Forward shoot throughs",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Hindu pushups",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Inchworm",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Lateral shoot throughs",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Pike pushups",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Pushup T rotations",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Pushups",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Reverse plank",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Seated dips",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Side plank hold",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Staggered squats",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Sumo squats",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Thumbs up",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Vimanasana",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Wide hand pushups",
+                    "desc": "",
+                    "videoUrl": ""
+                }
+            ],
+            "lowerbody": [
+                {
+                    "name": "Staggered deadlift",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Squats",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Side lunges",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Lunges",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Frog squats",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Frog stomps",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Glute brigdes",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Good mornings",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Calf raises",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Baski",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Bear crawl",
+                    "desc": "",
+                    "videoUrl": ""
+                }
+            ]
+        },
+        "core": {
+            "upperbody": [
+                {
+                    "name": "plank hold",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "boat hold",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "Jack knives",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "crunches",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "bicycle crunches",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "beast hold",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "plank to hip twists",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "x ups",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "superman hold",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "superman pulses",
+                    "desc": "",
+                    "videoUrl": ""
+                }
+            ],
+            "lowerbody": [
+                {
+                    "name": "windshield wipers",
+                    "desc": "",
+                    "videoUrl": ""
+                },
+                {
+                    "name": "leg raises",
+                    "desc": "",
+                    "videoUrl": ""
+                }
+            ]
+        }
+    }
+},
+
+{
+    "equipment": {
+        "cardio": {
+            "upperbody": [],
+            "lowerbody": []
+        },
+        "strength": {
+            "upperbody": [],
+            "lowerbody": []
+        },
+        "core": {
+            "upperbody": [],
+            "lowerbody": []
+        }
+    }
+},
+{"Animalwalks":{
+    "name": "beast crawl",
+    "desc": "",
+    "videoUrl": ""
+}},
+{"HIIT":{
+    "name": "Fast feet",
+    "desc": "",
+    "videoUrl": ""
+}},
+{"Mobility":{
+    "name": "rockers",
+    "desc": "",
+    "videoUrl": ""
+}}
+    
+]

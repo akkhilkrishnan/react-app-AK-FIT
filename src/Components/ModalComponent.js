@@ -7,34 +7,46 @@ import { TimerContext } from "../Context/TimerContext";
 
 function ModalComponent(props) {
     const navigate = useNavigate()
-      const  {timerTrigger,setTimerTrigger,timerArr,setTimerArr}=useContext(TimerContext)
+      let  {timerTrigger,setTimerTrigger,timerArr,setTimerArr}=useContext(TimerContext)
     let { weekWorkout, openModal } = props;
     const [days, setdays] = useState(['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY']);
     let hyd = 60;
 
     const handleStart = (on, off, sets, laps, workouts) => {
-
+        
         console.log(on, off, sets, laps, workouts)
-        generateArrayForTimer(on, off, sets, laps, workouts)
+        generateArrayForTimer(on, off, sets, laps,60, workouts)
 
     }
-    const generateArrayForTimer = (on, off, sets, laps, workouts) => {
-        timerArr.push(10)
-        for (let i = 0; i < sets*workouts.length; i++) {
-            timerArr.push(on)
-            timerArr.push(off)
+    const generateArrayForTimer = (on, off, sets, laps,hyd, workouts) => {
+        timerArr=[]
+        let prepareOb={}
+        prepareOb['workout']='Prepare';
+        prepareOb['on']=10;
+        timerArr.push(prepareOb)
+        for(let lap=0;lap<laps;lap++)
+       { 
+    workouts.map((workout)=>{
+                let obj={}
+           obj['workout']=workout;
+           for(let i=0;i<sets;i++)
+        {
+            obj['on']=on;
+            obj['off']=off;
+            timerArr.push(obj) 
         }
-        timerArr.push(60)
-        for (let i = 0; i < sets*workouts.length; i++) {
-            timerArr.push(on)
-            timerArr.push(off)
-        }
-        console.log(timerArr)
-        setTimerTrigger(true)
-        props.closeModal()
-
-    }
-
+    })
+    let ob={}
+    ob['workout']='Rest between the laps';
+    ob['hyd']=hyd
+    if(lap!=laps-1)
+    timerArr.push(ob)
+       }
+       setTimerArr(timerArr)
+    console.log(timerArr)
+            setTimerTrigger(true)
+        // props.closeModal()
+}
 
     const closeModal = () => {
         props.closeModal()

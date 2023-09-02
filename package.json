@@ -31,7 +31,8 @@
     "eject": "react-scripts eject",
     "api": "cd backend && nodemon server.js",
     "client": "npm start",
-    "dev": "concurrently \"npm run client\" \"npm run api\""
+    "dev": "concurrently \"npm run client\" \"npm run api\"",
+    "deploy":"Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted && netlify deploy"
   },
   "eslintConfig": {
     "extends": [

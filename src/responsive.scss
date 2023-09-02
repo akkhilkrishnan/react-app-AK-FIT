@@ -1,12 +1,40 @@
-    @media only screen and (width: 768px) {
-  body {
-    background-color: lightblue;
-  }
-  .header ul a:-webkit-any-link {
-    font-size: 12px !important;
-    margin-left: 20px !important;
-    margin-bottom: 15px;
-    text-decoration: none;
-    color: rgb(180, 180, 180);
-  }
-}
+    @media only screen and (min-width: 768px) and (max-width:850px) {
+      body {
+        // background-color: lightblue;
+      }
+
+      .header ul a:-webkit-any-link {
+        font-size: 12px !important;
+        margin-left: 15px !important;
+        margin-bottom: 15px;
+        text-decoration: none;
+        color: rgb(180, 180, 180);
+      }
+
+      .card-style {
+        min-width: 250px !important;
+      }
+
+      .card-heading {
+        font-size: 14px;
+      }
+
+      .fallback-msg {
+        font-size: 16px;
+      }
+
+      .workout-layout {
+        gap: 20px !important;
+      }
+
+      .css-sghohy-MuiButtonBase-root-MuiButton-root {
+        width: 150px !important;
+        font-size: 12px !important;
+      }
+
+      .week-btn-container {
+        h3 {
+          font-size: 14px !important;
+        }
+      }
+    }

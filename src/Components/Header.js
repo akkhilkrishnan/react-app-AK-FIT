@@ -42,7 +42,7 @@ function Header() {
     <div className="header">
       <Link to="home" className="home-logo" onClick={()=>handleLogoCLick}>
         <img src="assets/images/logo.svg" alt="logo image" />
-        <span>AK-FIT</span>
+        <span>GRIT FFS</span>
       </Link>
       <div className="menu-container">
       <Navbar>

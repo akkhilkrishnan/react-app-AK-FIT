@@ -12,8 +12,10 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
+import structuredClone from '@ungap/structured-clone';
+import {workoutContext} from '../Context/workoutContext'
 function DesignWorkoutPage() {
-  let workoutListArr = [];
+  // let workoutListArr = [];
 
   const [workout_type, setWorkout_type] = useState("cardio");
   const [workoutSpec, setWorkoutSpec] = useState("bodyweight");
@@ -24,7 +26,7 @@ function DesignWorkoutPage() {
   const [laps, setLaps] = useState(2);
 
 
-  const [workout_arr, setWorkout_arr] = useState([]);
+  let [workout_arr, setWorkout_arr] = useState([]);
   let [workout_obj, setWorkout_obj] = useState({});
   const [activebtn, setActivebtn] = useState(false);
   const [multiArrayLength, setMultiArrayLength] = useState(0);
@@ -50,6 +52,7 @@ function DesignWorkoutPage() {
     return splitWorkoutName.some((item) => splitWorkoutList.includes(item))
   }
   const generateWorkout = () => {
+    let workoutListArr = [];
     for (let i = 0; i < noOfWorkouts; i++) {
       let workout =
         workouts[workout_type][
@@ -58,24 +61,27 @@ function DesignWorkoutPage() {
       if (workoutListArr.includes(workout) || validateWorkout(workoutListArr, workout)) i = i - 1;
       else workoutListArr.push(workout);
     }
+    workoutListArr=[...workoutListArr]
     return workoutListArr
   }
   const handleClick = () => {
-    setWorkout_arr(generateWorkout());
-    // workout_obj={}
+    setWorkout_arr([...generateWorkout()]);
+    // setWorkout_obj({})
     mapToObject(workout_arr)
-    workoutListArr = [];
+    workout_obj={...workout_obj}
+    workout_arr=[]
+    console.log('workout_obj',workout_obj)
   };
   const mapToObject = (arr) => {
-    let obj = {}
+    // let obj = {}
     workout_obj['workouttype'] = workout_type;
     workout_obj['workouts'] = arr;
     workout_obj['onTime'] = onTime;
     workout_obj['offTime'] = offTime;
     workout_obj['sets'] = sets;
     workout_obj['laps'] = laps;
-    obj = workout_obj
-    return obj
+    // obj = workout_obj
+    // return obj
   }
   const pcallback = (oneWeekWorkout, multiArrayLength) => {
     setMultiArrayLength(multiArrayLength)
@@ -85,7 +91,29 @@ function DesignWorkoutPage() {
     else if (oneWeekWorkout.length == 0)
       setActivebtn(true)
   }
+  const refreshWorkout = (index) => {
+    console.log('inside refresh', index,workout_obj)
+    let workout =
+      workouts[workout_type][
+      Math.floor(Math.random() * workouts[workout_type].length)
+      ];
+    // if (!(workoutListArr.includes(workout) || validateWorkout(workoutListArr, workout))) 
+    // workout_arr[index] = workout;
+    workout_arr.splice(index, 1, workout)
+    // setWorkout_arr([...workout_arr])
+    // setWorkout_arr(structuredClone(workout_arr))
+    mapToObject(workout_arr)
+    setWorkout_obj({...workout_obj})
+    //  setWorkout_obj(structuredClone(workout_obj))
+  }
+  const EditWorkout = (EditInput, index) => {
+    workout_arr[index] = EditInput
+    setWorkout_arr([...workout_arr])
+    mapToObject(workout_arr)
+    setWorkout_obj(workout_obj)
+  }
   return (
+    <workoutContext.Provider value={{workout_obj, setWorkout_obj}}>
     <div className="workout-layout">
       <div className="type-style">
         {/* <h2>Workout Designer</h2> */}
@@ -165,14 +193,14 @@ function DesignWorkoutPage() {
             onChange={(e) => setLaps(e.target.value)}
           />
         </div>
-        {activebtn && <Button className="btn-style" variant="contained" onClick={handleClick}>
+        {activebtn && <Button className="btn-style" variant="contained" onClick={()=>handleClick()}>
           Frame Workout
         </Button>}
         {(multiArrayLength.length == 4 && !activebtn) ? <div className="success-style"> saved workout for the month</div> : <></>}
       </div>
-      <Card workout_obj={workout_obj} pcallback={pcallback} />
+      <Card  pcallback={pcallback} EditWorkout={EditWorkout} refreshWorkout={refreshWorkout} />
     </div>
+    </workoutContext.Provider>
   );
 }
 export default DesignWorkoutPage;
-

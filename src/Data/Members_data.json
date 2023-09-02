@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "64bb692eb3d90f72644e3740"
+  },
+  "name": "Akkhil",
+  "dob": "2023-07-21T18:30:00.000Z",
+  "joiningdate": "2023-07-21T18:30:00.000Z",
+  "phnnumber": "987664544",
+  "email": "akkhil@gmailc.om",
+  "insta": "asdlkjs",
+  "amountpaid": "3000"
+},{
+  "_id": {
+    "$oid": "64bb6b983cea04f721ba74ee"
+  },
+  "name": "Akkhil",
+  "dob": "2023-07-21T18:30:00.000Z",
+  "joiningdate": "2023-07-21T18:30:00.000Z",
+  "phnnumber": "09979789",
+  "email": "jhjkhk",
+  "insta": "kjhkh",
+  "amountpaid": "3000"
+},{
+  "_id": {
+    "$oid": "64bb6bc4e35260e6e1d8140d"
+  },
+  "name": "Akkhil",
+  "dob": "2023-07-21T18:30:00.000Z",
+  "joiningdate": "2023-07-21T18:30:00.000Z",
+  "phnnumber": "09979789",
+  "email": "jhjkhk",
+  "insta": "kjhkh",
+  "amountpaid": "3000"
+},{
+  "_id": {
+    "$oid": "64bb70e6651a81c9d9bd40e3"
+  },
+  "name": "krishnan",
+  "dob": "2023-07-21T18:30:00.000Z",
+  "joiningdate": "2023-06-08T18:30:00.000Z",
+  "phnnumber": "34534545",
+  "email": "adasd",
+  "insta": "asdasd",
+  "amountpaid": "4000"
+}]

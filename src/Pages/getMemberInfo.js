@@ -24,14 +24,17 @@ function GetMemberInfo() {
       .then((response) => {
         return response.json();
       })
-      .then((msg) => console.log('resposnse:::',msg));
+      .then((msg) => console.log('resposnse:::', msg));
   }
   const addMemberHandle = (member) => {
     console.log(member)
     insertMember(member)
 
   };
-
+  const handleDisable = () => {
+    console.log(!(memberDetails.name && memberDetails.dob && memberDetails.joiningdate))
+    return (!(memberDetails.name && memberDetails.dob && memberDetails.joiningdate))
+  }
   return (<div className="generate-workout-page">
     <h2>Member Details</h2>
     <Box
@@ -39,91 +42,92 @@ function GetMemberInfo() {
       sx={{
         '& .MuiTextField-root': { m: 1, width: '25ch' },
       }}
-      noValidate
-      autoComplete="off"
+      Validate
+      autoComplete="on"
     >
-    <div className="input-style">
-      <TextField
-        required 
-        id="standard-basic"
-        label="Member Name"
-        variant="standard"
-        value={memberDetails.name}
-        onChange={event => (memberDetails['name'] = event.target.value)}
-      />
-      <LocalizationProvider
-        dateAdapter={AdapterDayjs}
+      <div className="input-style">
+        <TextField
+          required
+          id="standard-basic"
+          label="Member Name"
+          variant="standard"
+          value={memberDetails.name}
+          onChange={event => (memberDetails['name'] = event.target.value)}
+        />
+        <LocalizationProvider
+          dateAdapter={AdapterDayjs}
+        >
+          <DatePicker
+            label="DOB"
+            required
+            value={memberDetails.dob}
+            onChange={(newValue) => (memberDetails['dob'] = new Date(newValue))}
+          />
+          <DatePicker
+            label="Joining date"
+            required
+            value={memberDetails.joiningdate}
+            onChange={(newValue) => (memberDetails['joiningdate'] = new Date(newValue))}
+          />
+        </LocalizationProvider>
+
+        <TextField
+          required
+          id="standard-basic"
+          label="Phone Number"
+          variant="standard"
+          value={memberDetails.phnnumber}
+          onChange={(newValue) => (memberDetails['phnnumber'] = newValue.target.value)}
+        />
+        <TextField
+          required
+          id="standard-basic"
+          label="Email Id"
+          variant="standard"
+          value={memberDetails.email}
+          onChange={(newValue) => (memberDetails['email'] = newValue.target.value)}
+        />
+        <TextField
+          required
+          id="standard-basic"
+          label="Instagram Id"
+          variant="standard"
+          value={memberDetails.insta}
+          onChange={(newValue) => (memberDetails['insta'] = newValue.target.value)}
+        />
+
+
+        <TextField
+          required
+          id="standard-basic"
+          label="Member Subscription"
+          variant="standard"
+          value={memberDetails.subscription}
+          onChange={(newValue) =>
+            (memberDetails['subscription'] = newValue.target.value)
+          }
+        />
+        <TextField
+          required
+          id="standard-basic"
+          label="Amount Paid"
+          variant="standard"
+          value={memberDetails.amountpaid}
+          onChange={(newValue) => (memberDetails['amountpaid'] = newValue.target.value)}
+        />
+      </div>
+
+      <Button
+        className="btn-style"
+        variant="contained"
+        disabled={form.Validate}
+        onClick={() => {
+          addMemberHandle(memberDetails);
+        }}
+
       >
-        <DatePicker
-          label="DOB"
-          required
-          value={memberDetails.dob}
-          onChange={(newValue) => (memberDetails['dob'] = new Date(newValue))}
-        />
-        <DatePicker
-          label="Joining date"
-          required
-          value={memberDetails.joiningdate}
-          onChange={(newValue) => (memberDetails['joiningdate'] = new Date(newValue))}
-        />
-      </LocalizationProvider>
-      
-      <TextField
-        required
-        id="standard-basic"
-        label="Phone Number"
-        variant="standard"
-        value={memberDetails.phnnumber}
-        onChange={(newValue) => (memberDetails['phnnumber'] = newValue.target.value)}
-      />
-      <TextField
-        required
-        id="standard-basic"
-        label="Email Id"
-        variant="standard"
-        value={memberDetails.email}
-        onChange={(newValue) => (memberDetails['email'] = newValue.target.value)}
-      />
-      <TextField
-        required
-        id="standard-basic"
-        label="Instagram Id"
-        variant="standard"
-        value={memberDetails.insta}
-        onChange={(newValue) => (memberDetails['insta'] = newValue.target.value)}
-      />
-
-
-<TextField
-        required
-        id="standard-basic"
-        label="Member Subscription"
-        variant="standard"
-        value={memberDetails.subscription}
-        onChange={(newValue) =>
-          (memberDetails['subscription'] = newValue.target.value)
-        }
-      />
-      <TextField
-        required
-        id="standard-basic"
-        label="Amount Paid"
-        variant="standard"
-        value={memberDetails.amountpaid}
-        onChange={(newValue) => (memberDetails['amountpaid'] = newValue.target.value)}
-      />
-    </div>
-
-    <Button
-      className="btn-style"
-      variant="contained"
-      onClick={() => {
-        addMemberHandle(memberDetails);
-      }}
-   
-    >
-      Add Member
-    </Button>
+        Add Member
+      </Button>
     </Box>
   </div>)
 }
