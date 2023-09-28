@@ -82,12 +82,13 @@ function ModalComponent(props) {
                             <div>laps: {dayWorkout.laps}</div>
                         </div>
                         <div className="Modal-btn">
-                            <Button variant="contained"
+                            <button variant="contained"
+                            className="btn-style"
                                 onClick={() => handleStart(dayWorkout.onTime,
                                     dayWorkout.offTime,
                                     dayWorkout.sets,
                                     dayWorkout.laps,
-                                    dayWorkout.workouts)}>START WORKOUT</Button>
+                                    dayWorkout.workouts)}>START WORKOUT</button>
                         </div>
                     </div>
                 })}

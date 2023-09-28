@@ -7,8 +7,10 @@ import { Navbar, Nav } from "react-bootstrap";
 import Button from "@mui/material/Button";
 
 function Header() {
-  const [menuList, setMenuList] = useState(['Design Workout','Add New Member','View Member Details','Add Workouts'])
-//   const [menuList, setMenuList] = useState([{
+  const menuList=['Design Workout','Add New Member','View Member Details','Add Workouts']
+  const [openDropDown, setOpenDropDown] = useState([])
+
+  //   const [menuList, setMenuList] = useState([{
 //     "name": "Design Workout",
 //     'active': false
 //   }, {
@@ -37,12 +39,18 @@ function Header() {
     setActiveTab('/home')
 
     }
-  
+  const handleLogin=()=>{
+    console.log('loginnn')
+    setOpenDropDown(!openDropDown)
+
+  }
   return (
     <div className="header">
       <Link to="home" className="home-logo" onClick={()=>handleLogoCLick}>
-        <img src="assets/images/logo.svg" alt="logo image" />
-        <span>GRIT FFS</span>
+      <img style={{width:'45px'}}src="assets/images/gritLogo.png" alt="logo image" />
+        {/* <span>GRIT</span> */}
+        <img style={{width:'70px'}} src="assets/images/gritNameImg.png" alt="logo image" />
+
       </Link>
       <div className="menu-container">
       <Navbar>
@@ -64,8 +72,15 @@ function Header() {
                <input class="mainLoginInput" type="text" placeholder="&#61442; Search on Marketplace"/>
                  <i className="fa fa-search"></i> 
              </div> */}
-        <Button className="login-btn" variant="contained" >Login/Sign-up</Button>
+        {/* <Button className="login-btn" variant="contained" >Login/Sign-up</Button> */}
+        <img  className="login-btn"src="assets/images/loginIcon.svg" alt="logo image" onClick={handleLogin}></img>
       </div>
+      {openDropDown&&<div>
+<ul>
+  <li>Log out</li>
+</ul>
+
+        </div>}
     </div>
   );
 }

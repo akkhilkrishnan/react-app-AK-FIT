@@ -70,7 +70,7 @@ function GetMemberInfo(){
       />
     </div>
 
-    <Button
+    <button
       className="btn-style"
       variant="contained"
       onClick={() => {
@@ -78,7 +78,7 @@ function GetMemberInfo(){
       }}
     >
       Add Member
-    </Button>
+    </button>
   </div>)
 }
 

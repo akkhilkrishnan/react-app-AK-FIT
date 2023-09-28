@@ -5,8 +5,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ececec;
-}
+  // background-color: rgba(2, 20, 43, 0.9) ;
+  background-color: rgba(0, 0, 0, 0.95) ;
+
+  // color: #cecbcb;
+  // color: rgba(255, 128, 0, 0.6) ;
+  color: rgba(255, 255, 255, 0.6)  !important; 
+  font-size: 12px !important;
+  overflow: hidden;
+} 
+
+//colors
+
+// #1a273f
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

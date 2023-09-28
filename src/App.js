@@ -5,6 +5,8 @@ import GetMemberInfo from './Pages/getMemberInfo';
 import Header from "./Components/Header";
 import Home from "./Pages/Home";
 import {TimerContext} from './Context/TimerContext';
+
+
 // import ModalApp from './Components/modall';
 // import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import {
@@ -14,6 +16,17 @@ import {
 import { useState, useEffect, useContext } from 'react';
 import Timer from './Components/Timer';
 import ModalApp from './Components/modall';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import LoginPage from './LoginPage';
+import SideNavBar from './Components/sideNavBar.tsx';
+import Dashboard from './Pages/Dashboard.tsx';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
   const [timerTrigger, setTimerTrigger] = useState(false);
@@ -24,9 +37,17 @@ function App() {
   console.log('context:::', timerTrigger,TimerContext,timerArr)
 
   return (
+    <ThemeProvider theme={darkTheme}>
+    <CssBaseline />
+    <Routes>
+      <Route path="/" element={<LoginPage/>}></Route>
+    </Routes>
     <TimerContext.Provider value={{timerTrigger,setTimerTrigger,timerArr,setTimerArr}}>
     <div className="App">
-      {!timerTrigger?<div><Header />
+      {!timerTrigger?<div>
+        <Header />
+        <SideNavBar/>
+        <div style={{marginLeft:"170px"}}>
       <Routes>
         <Route path="home" element={<Home />} />
         <Route path="home/designworkout" element={<DesignWorkoutPage />}></Route>
@@ -35,14 +56,18 @@ function App() {
         <Route path="addnewmember" element={<GetMemberInfo />}></Route>
         <Route path="home/viewmemberdetails" element={<ViewMembersInfo />}></Route>
         <Route path="viewmemberdetails" element={<ViewMembersInfo />}></Route>
-      </Routes></div>
+        <Route path="dashboard" element={<Dashboard />}></Route>
+
+      </Routes>
+      </div>
+      </div>
 :
       <Timer array={timerArr}/>}
 
     </div>
 
      </TimerContext.Provider>
-
+     </ThemeProvider>
 
   );
 }

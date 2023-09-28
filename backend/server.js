@@ -43,7 +43,7 @@ async function run() {
     // Send a ping to confirm a successful connection
     // await client.db("members").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-    data = await client.db('Members').collection('Members').find().toArray()
+    data = await client.db('Fascia_fitness').collection('Members').find().toArray()
   } finally {
     await client.close();
   }
@@ -53,15 +53,13 @@ var memberDetails;
 const fetchMemberDetails = async (id) => {
   try {
     await client.connect();
-    memberDetails = await client.db('Members').collection('Members').find({_id:new ObjectId(id)})
+    memberDetails = await client.db('Fascia_fitness').collection('Members').find({_id:new ObjectId(id)})
     await client.close();
   }
   finally {
     await client.close();
   }
-  // console.log('member details::::::', memberDetails)
 }
-//64bc19c5f6f36df9fc6439ef
 
 app.get("/fetchMemberDetails", (req, res) => {
   fetchMemberDetails().catch(console.dir);
@@ -82,7 +80,7 @@ async function insertMember(record) {
   var postStatus
   try {
     await client.connect();
-    let result = await client.db('Members').collection('Members').insertOne(record)
+    let result = await client.db('Fascia_fitness').collection('Members').insertOne(record)
     console.log('result:::', result)
     postStatus = result.acknowledged
   }
