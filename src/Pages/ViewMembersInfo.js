@@ -16,7 +16,7 @@ function ViewMembersInfo() {
   }, []);
 
   const getmembersData = () => {
-    fetch("http://localhost:5000/data", {
+    fetch("https://localhost:5000/data", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

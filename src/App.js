@@ -13,9 +13,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import { useState, useEffect, useContext } from 'react';
+import { useState} from 'react';
 import Timer from './Components/Timer';
-import ModalApp from './Components/modall';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import LoginPage from './LoginPage';
