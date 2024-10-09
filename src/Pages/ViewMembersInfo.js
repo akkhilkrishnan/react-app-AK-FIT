@@ -2,21 +2,62 @@ import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { useNavigate, useLocation } from "react-router-dom";
 import Modal from "../Components/Modal.tsx";
+// const fs = require("fs");
+
 function ViewMembersInfo() {
   const navigate = useNavigate();
+  const data = `Name: Neerav Bafna
+DOB: 14/06/2000
+Email: nkbafna14@gmail.com
+Ph no: 8939264998
+Emergency no: 9381024386
+Height: 171.5
+Weight: 92.20
+Medical condition: No
 
+
+Name: Bharat.M
+DOB: 15/08/1987
+Email:
+Ph no: 9884426430
+Emergency no: 9551510786
+Height: 185
+Weight: 96.25
+Medical condition: No
+
+
+Name: Bhaviya 
+DOB: 06/10/2000
+Email: bhaviyachawla2000@gmail.com
+Ph no: 9080984119
+Emergency no: 9789067807
+Height: 158
+Weight: 63
+Medical condition: No
+
+
+Name: Aswanth Kumar 
+DOB: 05/10/1993
+Email: nm.aswanth@gmail.com
+Ph no: 9789067807
+Emergency no: 9840724244
+Height: 176
+Weight: 90.15
+Medical condition: No`;
   const [membersData, setMembersData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 
   const [modalType, setModalType] = useState(null);
 
-
   useEffect(() => {
     getmembersData();
+
+    const jsonResultArray = convertToJSONArray(data);
+    console.log("dataaa::::", JSON.stringify(jsonResultArray, null, 2));
   }, []);
 
   const getmembersData = () => {
-    fetch("https://localhost:5000/data", {
+    fetch("http://localhost:5000/data", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -56,9 +97,8 @@ function ViewMembersInfo() {
     // membersData[record_index].DOJ = joiningDate.setDate(
     //   joiningDate.getDate() + 7
     // );
-    setModalType("update")
+    setModalType("update");
     setOpenModal(true);
-
   };
 
   const currencyFormatter = (amount) => {
@@ -106,15 +146,37 @@ function ViewMembersInfo() {
 
     return { expiryDate, memberStatusColor };
   };
-const handleDelete=(index)=>{
-  console.log(membersData[index]);
-  setOpenModal(true);
-  setModalType("delete")
-}
+  const handleDelete = (index) => {
+    console.log(membersData[index]);
+    setOpenModal(true);
+    setModalType("delete");
+  };
 
-const closeModal = () => {
-  setOpenModal(false);
-};
+  const closeModal = () => {
+    setOpenModal(false);
+  };
+
+  function convertToJSONArray(dataString) {
+    const entries = dataString.trim().split(/\n\s*\n/);
+    const jsonArray = [];
+
+    entries.forEach((entry) => {
+      const lines = entry.trim().split("\n");
+      const jsonObject = {};
+
+      lines.forEach((line) => {
+        const [key, value] = line.split(":").map((item) => item.trim());
+        jsonObject[key] = value || null; // Use null for empty values
+      });
+
+      jsonArray.push(jsonObject);
+    });
+
+    return jsonArray;
+  }
+
+  // Read the text file
+
   return (
     <div className="view-container">
       <div className="first-record-style">
@@ -151,9 +213,9 @@ const closeModal = () => {
                     calculateExpiryDate(member.doj, member.subscription)
                       .memberStatusColor
                   }`,
-                  fontWeight: 100 ,
+                  fontWeight: 100,
                   fontSize: "16px",
-                  textTransform:'capitalize'
+                  textTransform: "capitalize",
                 }}
               >
                 {member.name}
@@ -180,12 +242,14 @@ const closeModal = () => {
                 style={{ marginLeft: "10px", cursor: "pointer" }}
                 src="assets/images/deleteIcon.svg"
                 onClick={() => handleDelete(index)}
-                ></img>
+              ></img>
             </div>
           </div>
         );
       })}
-      {openModal && <Modal openModal={openModal} type={modalType}closeModal={closeModal} />}
+      {openModal && (
+        <Modal openModal={openModal} type={modalType} closeModal={closeModal} />
+      )}
     </div>
   );
 }

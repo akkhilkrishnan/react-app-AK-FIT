@@ -81,14 +81,14 @@ function Card(props) {
   const handleEdit = (index) => {
     setEditSaveTogggle(!editSaveToggle);
     if (editSaveToggle) {
-      props.EditWorkout(index);
+      props.EditWorkout(workoutList[index], index, workoutList);
       setEditIndex(index);
     } else {
-      if (editInput) props.EditWorkout(editInput, index);
+      if (editInput) props.EditWorkout(editInput, index, workoutList);
     }
   };
   const handleRefresh = (index) => {
-    props.refreshWorkout(index);
+    props.refreshWorkout(index, workoutList);
     // editIndex=index
   };
   return (

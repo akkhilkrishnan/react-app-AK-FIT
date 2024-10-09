@@ -22,16 +22,20 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const { ObjectId } = require('mongodb');
+const { ObjectId } = require("mongodb");
 
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+const bodyParser = require("body-parser");
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 app.use(bodyParser.json());
 app.use(cors());
 const { MongoClient, ServerApiVersion } = require("mongodb");
-const client = new MongoClient('mongodb+srv://akkhilcoder:akdb123@cluster0.1bzifad.mongodb.net/test')
+const client = new MongoClient(
+  "mongodb+srv://Akkhil:Akkhil09@cluster0.oeyly.mongodb.net/"
+);
 // const connectDB=async ()=>{
 //   mongoose.connect('mongodb+srv://akkhilcoder:akdb123@cluster0.1bzifad.mongodb.net/test');
 //   const productSchema=new mongoose.Schema({});
@@ -42,8 +46,10 @@ async function run() {
     await client.connect();
     // Send a ping to confirm a successful connection
     // await client.db("members").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-    data = await client.db('Fascia_fitness').collection('Members').find().toArray()
+    console.log(
+      "Pinged your deployment. You successfully connected to MongoDB!"
+    );
+    data = await client.db("GritDB").collection("Members").find().toArray();
   } finally {
     await client.close();
   }
@@ -53,44 +59,48 @@ var memberDetails;
 const fetchMemberDetails = async (id) => {
   try {
     await client.connect();
-    memberDetails = await client.db('Fascia_fitness').collection('Members').find({_id:new ObjectId(id)})
+    memberDetails = await client
+      .db("GritDB")
+      .collection("Members")
+      .find({ _id: new ObjectId(id) });
+    await client.close();
+  } finally {
     await client.close();
   }
-  finally {
-    await client.close();
-  }
-}
+};
 
 app.get("/fetchMemberDetails", (req, res) => {
   fetchMemberDetails().catch(console.dir);
   res.send(data);
-})
+});
 
 app.get("/data", (req, res) => {
   run().catch(console.dir);
   res.send(data);
-})
+});
 app.post("/addmember", async (req, res) => {
-  var postStatus
-  postStatus = await insertMember(req.body)
-  res.send({ status: postStatus ? 'Success' : 'failure' })
-})
+  var postStatus;
+  postStatus = await insertMember(req.body);
+  res.send({ status: postStatus ? "Success" : "failure" });
+});
 
 async function insertMember(record) {
-  var postStatus
+  var postStatus;
   try {
     await client.connect();
-    let result = await client.db('Fascia_fitness').collection('Members').insertOne(record)
-    console.log('result:::', result)
-    postStatus = result.acknowledged
-  }
-  // catch {
-  //   console.dir('catcheddd')
-  // }
-  finally {
+    let result = await client
+      .db("GritDB")
+      .collection("Members")
+      .insertOne(record);
+    console.log("result:::", result);
+    postStatus = result.acknowledged;
+  } finally {
+    // catch {
+    //   console.dir('catcheddd')
+    // }
     await client.close();
   }
-  return postStatus
+  return postStatus;
 }
 
 app.listen(5000, () => {

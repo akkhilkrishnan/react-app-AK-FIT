@@ -135,41 +135,41 @@ function DesignWorkoutPage() {
     workout_obj["laps"] = laps;
   };
 
-  const addDate=(date,number)=>{
-return date.setDate(date.getDate()+number)
-  }
+  const addDate = (date, number) => {
+    return date.setDate(date.getDate() + number);
+  };
   const pcallback = (oneWeekWorkout, multiArrayLength) => {
     setMultiArrayLength(multiArrayLength);
-    let dt 
-    if (designDetails.startdate!==null) {
-      dt= designDetails.startdate.toDate();
+    let dt;
+    if (designDetails.startdate !== null) {
+      dt = designDetails.startdate.toDate();
       dt.setDate(dt.getDate() + 1);
-        setDesignDetails({
-          ...designDetails,
-          startdate: dayjs(dt),
-        });
+      setDesignDetails({
+        ...designDetails,
+        startdate: dayjs(dt),
+      });
     }
     console.log("inside parent call backkk", oneWeekWorkout, multiArrayLength);
     if (oneWeekWorkout.length == 5 || multiArrayLength.length == 4)
       setActivebtn(false);
     else if (oneWeekWorkout.length == 0) setActivebtn(true);
   };
-  const refreshWorkout = (index) => {
+  const refreshWorkout = (index, list) => {
     console.log("inside refresh", index, workout_obj);
     let workout =
       workouts[workout_type][
         Math.floor(Math.random() * workouts[workout_type].length)
       ];
-    workout_arr.splice(index, 1, workout);
+    list.splice(index, 1, workout);
     // mapToObject(workout_arr)
-    designDetails["workouts"] = workout_arr;
+    designDetails["workouts"] = list;
     setWorkout_obj({ ...designDetails });
   };
-  const EditWorkout = (EditInput, index) => {
-    workout_arr[index] = EditInput;
-    setWorkout_arr([...workout_arr]);
-    mapToObject(workout_arr);
-    setWorkout_obj(workout_obj);
+  const EditWorkout = (EditInput, index, list) => {
+    list[index] = EditInput;
+    // setWorkout_arr([...list]);
+    // mapToObject(list);
+    // setWorkout_obj(workout_obj);
   };
 
   const validateFrom = () => {
