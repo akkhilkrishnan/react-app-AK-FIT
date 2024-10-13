@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { useNavigate, useLocation } from "react-router-dom";
 import Modal from "../Components/Modal.tsx";
+import { formatDate, formatUrl } from "../Helper/helperFunctions.js";
 // const fs = require("fs");
+import axios from "axios";
 
+import { ReadData } from "../Components/readData.js";
 function ViewMembersInfo() {
   const navigate = useNavigate();
   const data = `Name: Neerav Bafna
@@ -48,12 +51,14 @@ Medical condition: No`;
   const [openModal, setOpenModal] = useState(false);
 
   const [modalType, setModalType] = useState(null);
+  const [txtData, setTxtData] = useState(null);
 
   useEffect(() => {
     getmembersData();
 
     const jsonResultArray = convertToJSONArray(data);
-    console.log("dataaa::::", JSON.stringify(jsonResultArray, null, 2));
+    // console.log("dataaa::::", JSON.stringify(jsonResultArray, null, 2));
+    console.log(txtData);
   }, []);
 
   const getmembersData = () => {
@@ -69,7 +74,7 @@ Medical condition: No`;
         return response.json();
       })
       .then((data) => {
-        console.log("data", data);
+        // console.log("data", data);
         setMembersData(data);
       });
   };
@@ -146,6 +151,25 @@ Medical condition: No`;
 
     return { expiryDate, memberStatusColor };
   };
+
+  const findColor = (expiryDate) => {
+    const [day, month, year] = expiryDate.split("-").map(Number);
+    const parsedExpiryDate = new Date(year, month - 1, day); // Month is 0-indexed
+
+    const oneDay = 24 * 60 * 60 * 1000; // milliseconds in a day
+    const diffDays = Math.round(
+      Math.abs((parsedExpiryDate - new Date()) / oneDay)
+    );
+
+    const memberStatusColor =
+      parsedExpiryDate <= new Date() // Expired
+        ? "#DC0000"
+        : diffDays <= 3 // About to expire
+        ? "#FFA500"
+        : "#4AAc2c"; // Valid
+
+    return memberStatusColor;
+  };
   const handleDelete = (index) => {
     console.log(membersData[index]);
     setOpenModal(true);
@@ -174,44 +198,139 @@ Medical condition: No`;
 
     return jsonArray;
   }
+  // const formatDate = (joiningDate) => {
+  //   const [day, month, year] = joiningDate.split("-").map(Number);
+  //   const parsedDate = new Date(year, month - 1, day); // Month is 0-indexed
 
-  // Read the text file
-
+  //   const options = {
+  //     weekday: "short",
+  //     year: "numeric",
+  //     month: "short",
+  //     day: "numeric",
+  //   };
+  //   return parsedDate.toLocaleDateString("en-US", options);
+  // };
   return (
-    <div className="view-container">
-      <div className="first-record-style">
-        <h4>MEMBER NAME</h4>
-        <h4>DATE OF JOINING</h4>
-        <h4>SUBSCRIPTION</h4>
-        <h4>PAID AMOUNT</h4>
-        <h4>EXPIRY DATE</h4>
-      </div>
+    // <div className="view-container">
+    //   <div className="first-record-style">
+    //     {/* <h4>SNO</h4> */}
+    //     <h4>MEMBER NAME</h4>
+    //     <h4>DATE OF JOINING</h4>
+    //     <h4>STATUS</h4>
+    //     <h4>START DATE</h4>
+    //     <h4>SUBSCRIPTION</h4>
+    //     <h4>PAID AMOUNT</h4>
+    //     <h4>EXPIRY DATE</h4>
+    //   </div>
 
-      {membersData.map((member, index) => {
-        return (
-          <div
-            onClick={() => handleRecordClick(index)}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: "10px",
-              alignItems: "center",
-            }}
-          >
-            <div
-              key={index}
-              className="record-style"
-              //  style={
-              //       calculateExpiryDate(member.doj, member.subscription).expireFlag
-              //         ? { backgroundColor: "#DC0000" }
-              //         : { backgroundColor: "#4AAc2c"}
-              //     }
-            >
-              <div
+    //   {membersData.map((member, index) => {
+    //     return (
+    //       <div
+    //         onClick={() => handleRecordClick(index)}
+    //         style={{
+    //           display: "flex",
+    //           justifyContent: "space-between",
+    //           gap: "10px",
+    //           alignItems: "center",
+    //         }}
+    //       >
+    //         <div key={index} className="record-style">
+    //           <div
+    //             style={{
+    //               color: `${
+    //                 member.membershipend
+    //                   ? findColor(member.membershipend)
+    //                   : "#E6E6FA"
+    //               }`,
+    //               fontWeight: 100,
+    //               fontSize: "16px",
+    //               textTransform: "capitalize",
+    //             }}
+    //           >
+    //             {member.name}
+    //           </div>
+    //           <div>
+    //             {member.joiningDate ? formatDate(member.joiningDate) : "NA"}
+    //           </div>
+    //           <div>{member.status ? member.status : "NA"}</div>
+    //           <div>
+    //             {member.membershipstart
+    //               ? formatDate(member.membershipstart)
+    //               : "NA"}
+    //           </div>
+    //           <div>
+    //             {member.membership !== "" ? member.membership : "Monthly"}
+    //           </div>
+    //           <div>
+    //             {member.totalPaid ? currencyFormatter(member.totalPaid) : "NA"}
+    //           </div>
+    //           <div className="exp-field-style">
+    //             {member.membershipend != null
+    //               ? formatDate(member.membershipend)
+    //               : "NA"}
+    //           </div>
+    //           <button
+    //             className="update-btn"
+    //             variant="contained"
+    //             onClick={() => {
+    //               extendHandle(index);
+    //             }}
+    //           >
+    //             Renew
+    //           </button>
+    //           <img
+    //             style={{ marginLeft: "10px", cursor: "pointer" }}
+    //             src="assets/images/deleteIcon.svg"
+    //             onClick={() => handleDelete(index)}
+    //           ></img>
+    //         </div>
+    //       </div>
+    //     );
+    //   })}
+    //   {openModal && (
+    //     <Modal openModal={openModal} type={modalType} closeModal={closeModal} />
+    //   )}
+    // </div>
+    <div
+      style={{
+        overflow: "auto",
+        width: "95%",
+        margin: "auto",
+      }}
+    >
+      <table>
+        <tr>
+          <th>MEMBER IMG</th>
+          <th>MEMBER NAME</th>
+          <th>DATE OF JOINING</th>
+          <th>STATUS</th>
+          <th>START DATE</th>
+          <th>SUBSCRIPTION</th>
+          <th>PAID AMOUNT</th>
+          <th>EXPIRY DATE</th>
+          <th>Phone number</th>
+        </tr>
+        {membersData.map((member, index) => {
+          return (
+            <tr>
+              <td>
+                <img
+                  src={
+                    member.url
+                      ? formatUrl(member.url)
+                      : `/assets/images/image_NeeravBafna.jpg`
+                  }
+                  class="avatar"
+                  alt="Profile Avatar"
+                />
+              </td>
+              <td
+                key={index}
                 style={{
                   color: `${
-                    calculateExpiryDate(member.doj, member.subscription)
-                      .memberStatusColor
+                    member.membershipend
+                      ? findColor(member.membershipend)
+                      : "#E6E6FA"
                   }`,
                   fontWeight: 100,
                   fontSize: "16px",
@@ -219,37 +338,22 @@ Medical condition: No`;
                 }}
               >
                 {member.name}
-              </div>
-              <div>{new Date(member.doj).toString().slice(0, 15)}</div>
-              <div>{member.subscription ? member.subscription : "Monthly"}</div>
-              <div>{currencyFormatter(member.amountpaid)}</div>
-              <div className="exp-field-style">
-                {
-                  calculateExpiryDate(member.doj, member.subscription)
-                    .expiryDate
-                }
-              </div>
-              <button
-                className="update-btn"
-                variant="contained"
-                onClick={() => {
-                  extendHandle(index);
-                }}
-              >
-                Update Subscription
-              </button>
-              <img
-                style={{ marginLeft: "10px", cursor: "pointer" }}
-                src="assets/images/deleteIcon.svg"
-                onClick={() => handleDelete(index)}
-              ></img>
-            </div>
-          </div>
-        );
-      })}
-      {openModal && (
-        <Modal openModal={openModal} type={modalType} closeModal={closeModal} />
-      )}
+              </td>
+              <td>{member.joiningDate}</td>
+
+              <td>{member.status}</td>
+
+              <td>{member.membershipstart ? member.membershipstart : "NA"}</td>
+
+              <td>{member.membership}</td>
+              <td>{member.totalPaid}</td>
+
+              <td>{member.membershipend ? member.membershipend : "NA"}</td>
+              <td>{member.membershipend ? member.phone : "NA"}</td>
+            </tr>
+          );
+        })}
+      </table>
     </div>
   );
 }

@@ -1,0 +1,61 @@
+2024/10/13-23:18:14.868 2a0c Reusing MANIFEST C:\code\Gym App\react-app-AK-FIT\backend\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/10/13-23:18:14.870 2a0c Recovering log #5197
+2024/10/13-23:18:14.921 2a0c Reusing old log C:\code\Gym App\react-app-AK-FIT\backend\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/005197.log 
+2024/10/13-23:18:16.837 42d4 Level-0 table #5223: started
+2024/10/13-23:18:16.860 42d4 Level-0 table #5223: 427864 bytes OK
+2024/10/13-23:18:16.865 42d4 Delete type=0 #5197
+2024/10/13-23:18:16.866 42d4 Manual compaction at level-0 from ' @\x01\x00\x00\x00' @ 72057594037927935 : 1 .. ' A\x01\x00\x00\x00' @ 0 : 0; will stop at ' @\x01\x00\x00\x05' @ 6289854 : 1
+2024/10/13-23:18:16.866 42d4 Compacting 1@0 + 0@1 files
+2024/10/13-23:18:16.891 42d4 Generated table #5224@0: 7443 keys, 192954 bytes
+2024/10/13-23:18:16.896 42d4 Generated table #5225@0: 308 keys, 16050 bytes
+2024/10/13-23:18:16.897 42d4 Compacted 1@0 + 0@1 files => 209004 bytes
+2024/10/13-23:18:16.901 42d4 compacted to: files[ 0 2 27 0 0 0 0 ]
+2024/10/13-23:18:16.902 42d4 Delete type=2 #5223
+2024/10/13-23:18:16.902 42d4 Manual compaction at level-0 from ' @\x01\x00\x00\x05' @ 6289854 : 1 .. ' A\x01\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/10/13-23:18:18.651 4f24 Compacting 1@1 + 9@2 files
+2024/10/13-23:18:18.767 4f24 Generated table #5226@1: 36368 keys, 2227985 bytes
+2024/10/13-23:18:18.820 4f24 Generated table #5227@1: 10558 keys, 2146009 bytes
+2024/10/13-23:18:18.865 4f24 Generated table #5228@1: 8883 keys, 2131512 bytes
+2024/10/13-23:18:19.000 4f24 Generated table #5229@1: 82711 keys, 2228380 bytes
+2024/10/13-23:18:19.126 4f24 Generated table #5230@1: 98242 keys, 2249135 bytes
+2024/10/13-23:18:19.277 4f24 Generated table #5231@1: 97861 keys, 2247541 bytes
+2024/10/13-23:18:19.434 4f24 Generated table #5232@1: 97856 keys, 2248039 bytes
+2024/10/13-23:18:19.563 4f24 Generated table #5233@1: 97446 keys, 2246419 bytes
+2024/10/13-23:18:19.568 4f24 Generated table #5234@1: 741 keys, 43244 bytes
+2024/10/13-23:18:19.568 4f24 Compacted 1@1 + 9@2 files => 17768264 bytes
+2024/10/13-23:18:19.569 4f24 compacted to: files[ 0 1 27 0 0 0 0 ]
+2024/10/13-23:18:19.569 4f24 Delete type=2 #5201
+2024/10/13-23:18:19.569 4f24 Delete type=2 #5202
+2024/10/13-23:18:19.569 4f24 Delete type=2 #5203
+2024/10/13-23:18:19.569 4f24 Delete type=2 #5204
+2024/10/13-23:18:19.569 4f24 Delete type=2 #5205
+2024/10/13-23:18:19.569 4f24 Delete type=2 #5206
+2024/10/13-23:18:19.569 4f24 Delete type=2 #5207
+2024/10/13-23:18:19.569 4f24 Delete type=2 #5208
+2024/10/13-23:18:19.569 4f24 Delete type=2 #5209
+2024/10/13-23:18:19.569 4f24 Delete type=2 #5225
+2024/10/13-23:18:19.671 4f24 Compacting 1@1 + 10@2 files
+2024/10/13-23:18:19.796 4f24 Generated table #5235@1: 86678 keys, 2236412 bytes
+2024/10/13-23:18:19.912 4f24 Generated table #5236@1: 98699 keys, 2251420 bytes
+2024/10/13-23:18:20.014 4f24 Generated table #5237@1: 69274 keys, 2248995 bytes
+2024/10/13-23:18:20.113 4f24 Generated table #5238@1: 51156 keys, 2217859 bytes
+2024/10/13-23:18:20.157 4f24 Generated table #5239@1: 11186 keys, 2167085 bytes
+2024/10/13-23:18:20.193 4f24 Generated table #5240@1: 3295 keys, 2157720 bytes
+2024/10/13-23:18:20.231 4f24 Generated table #5241@1: 3254 keys, 2149636 bytes
+2024/10/13-23:18:20.278 4f24 Generated table #5242@1: 3950 keys, 2150125 bytes
+2024/10/13-23:18:20.335 4f24 Generated table #5243@1: 10661 keys, 2162595 bytes
+2024/10/13-23:18:20.446 4f24 Generated table #5244@1: 35619 keys, 2259705 bytes
+2024/10/13-23:18:20.450 4f24 Generated table #5245@1: 542 keys, 32713 bytes
+2024/10/13-23:18:20.450 4f24 Compacted 1@1 + 10@2 files => 22034265 bytes
+2024/10/13-23:18:20.451 4f24 compacted to: files[ 0 0 28 0 0 0 0 ]
+2024/10/13-23:18:20.451 4f24 Delete type=2 #5210
+2024/10/13-23:18:20.451 4f24 Delete type=2 #5211
+2024/10/13-23:18:20.451 4f24 Delete type=2 #5212
+2024/10/13-23:18:20.451 4f24 Delete type=2 #5213
+2024/10/13-23:18:20.451 4f24 Delete type=2 #5214
+2024/10/13-23:18:20.451 4f24 Delete type=2 #5215
+2024/10/13-23:18:20.451 4f24 Delete type=2 #5216
+2024/10/13-23:18:20.452 4f24 Delete type=2 #5217
+2024/10/13-23:18:20.452 4f24 Delete type=2 #5218
+2024/10/13-23:18:20.452 4f24 Delete type=2 #5219
+2024/10/13-23:18:20.452 4f24 Delete type=2 #5224

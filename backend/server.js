@@ -1,28 +1,20 @@
-// const express = require("express");
-// const app = express();
-
-// require("dotenv").config({ path: "./config.env" });
-// const port = process.env.PORT || 5000;
-
-// app.use(express.json());
-// // app.use(require("./routes/record"));
-// // get driver connection
-// const dbo = require("./db/conn");
-
-// app.listen(port, () => {
-//   // perform a database connection when server starts
-//   dbo.connectToServer(function (err) {
-//     if (err) console.error(err);
-
-//   });
-//   console.log(`Server is running on port: ${port}`);
-// });
-
-// import { ObjectId } from "bson"
 const express = require("express");
+const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const { ObjectId } = require("mongodb");
+const whatsappClient = require("./whatsapp"); // Adjust the path if needed
+
+mongoose
+  .connect("mongodb+srv://Akkhil:Akkhil09@cluster0.oeyly.mongodb.net/", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
+// Start the WhatsApp client
+whatsappClient.initialize();
 
 const bodyParser = require("body-parser");
 app.use(
@@ -40,7 +32,7 @@ const client = new MongoClient(
 //   mongoose.connect('mongodb+srv://akkhilcoder:akdb123@cluster0.1bzifad.mongodb.net/test');
 //   const productSchema=new mongoose.Schema({});
 //   const product=mongoose.modal('members', productSchema)
-var data;
+var data, sortedData;
 async function run() {
   try {
     await client.connect();
@@ -50,12 +42,39 @@ async function run() {
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
     data = await client.db("GritDB").collection("Members").find().toArray();
-  } finally {
-    await client.close();
+
+    sortedData = await data.sort((a, b) => {
+      // Check if membershipStart exists and is a string
+      if (!a.joiningDate || typeof a.joiningDate !== "string") {
+        return 1; // Move undefined or non-string values to the end
+      }
+      if (!b.joiningDate || typeof b.joiningDate !== "string") {
+        return -1; // Move undefined or non-string values to the end
+      }
+
+      const aDateParts = a.joiningDate.split("-"); // Split by '-'
+      const bDateParts = b.joiningDate.split("-");
+
+      // Create Date objects from the parts (YYYY-MM-DD)
+      const aDate = new Date(
+        `${aDateParts[2]}-${aDateParts[1]}-${aDateParts[0]}`
+      );
+      const bDate = new Date(
+        `${bDateParts[2]}-${bDateParts[1]}-${bDateParts[0]}`
+      );
+
+      return bDate - aDate; // Sort in Descending order
+    });
+  } catch (error) {
+    console.log(error);
   }
 }
 var memberDetails;
-
+const parseDate = (date) => {
+  const dateParts = date.split("/");
+  const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+  return formattedDate;
+};
 const fetchMemberDetails = async (id) => {
   try {
     await client.connect();
@@ -63,9 +82,9 @@ const fetchMemberDetails = async (id) => {
       .db("GritDB")
       .collection("Members")
       .find({ _id: new ObjectId(id) });
-    await client.close();
-  } finally {
-    await client.close();
+    // await client.close();
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -76,7 +95,7 @@ app.get("/fetchMemberDetails", (req, res) => {
 
 app.get("/data", (req, res) => {
   run().catch(console.dir);
-  res.send(data);
+  res.send(sortedData);
 });
 app.post("/addmember", async (req, res) => {
   var postStatus;
@@ -84,21 +103,53 @@ app.post("/addmember", async (req, res) => {
   res.send({ status: postStatus ? "Success" : "failure" });
 });
 
-async function insertMember(record) {
+app.post("/api/memberdetail", async (req, res) => {
+  try {
+    console.log("resposeeeeee", req.body);
+    const messageData = req.body;
+    addTrialMember(messageData);
+    // res.status(201).send({ message: "Message stored successfully!" });
+  } catch (error) {
+    console.error("Error saving message:", error);
+    // res.status(500).send({ error: "Failed to store message" });
+  }
+});
+const addTrialMember = async (member) => {
+  console.log(member);
+  var postStatus;
+  postStatus = await insertMember(member);
+  console.log("\n \ninsert status::::::", postStatus);
+};
+
+async function insertMember(member) {
   var postStatus;
   try {
     await client.connect();
-    let result = await client
+    const existingMember = await client
       .db("GritDB")
       .collection("Members")
-      .insertOne(record);
-    console.log("result:::", result);
-    postStatus = result.acknowledged;
-  } finally {
-    // catch {
-    //   console.dir('catcheddd')
-    // }
-    await client.close();
+      .findOne({
+        name: member.name,
+        dateofbirth: member.dateofbirth,
+      });
+    if (!existingMember) {
+      let result = await client
+        .db("GritDB")
+        .collection("Members")
+        .insertOne(member);
+      result.acknowledged
+        ? console.log("member inserted in DB successfuly")
+        : console.log("something went wrong");
+      postStatus = result.acknowledged;
+    } else {
+      console.log(
+        "Insert skipped: Member already existing Duplicate entry for name and DOB:",
+        member.name,
+        member.dateofbirth
+      );
+    }
+  } catch (error) {
+    console.log(error);
   }
   return postStatus;
 }

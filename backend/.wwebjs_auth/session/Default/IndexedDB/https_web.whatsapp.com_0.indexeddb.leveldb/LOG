@@ -1,0 +1,61 @@
+2024/10/13-23:24:29.100 60a8 Reusing MANIFEST C:\code\Gym App\react-app-AK-FIT\backend\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/10/13-23:24:29.101 60a8 Recovering log #5222
+2024/10/13-23:24:29.153 60a8 Reusing old log C:\code\Gym App\react-app-AK-FIT\backend\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/005222.log 
+2024/10/13-23:24:33.358 5c68 Level-0 table #5248: started
+2024/10/13-23:24:33.384 5c68 Level-0 table #5248: 466011 bytes OK
+2024/10/13-23:24:33.389 5c68 Delete type=0 #5222
+2024/10/13-23:24:33.389 5c68 Manual compaction at level-0 from ' A\x01\x00\x00\x00' @ 72057594037927935 : 1 .. ' B\x01\x00\x00\x00' @ 0 : 0; will stop at ' A\x01\x00\x00\x05' @ 6304287 : 1
+2024/10/13-23:24:33.389 5c68 Compacting 1@0 + 0@1 files
+2024/10/13-23:24:33.423 5c68 Generated table #5249@0: 8167 keys, 209714 bytes
+2024/10/13-23:24:33.429 5c68 Generated table #5250@0: 326 keys, 23141 bytes
+2024/10/13-23:24:33.429 5c68 Compacted 1@0 + 0@1 files => 232855 bytes
+2024/10/13-23:24:33.433 5c68 compacted to: files[ 0 2 28 0 0 0 0 ]
+2024/10/13-23:24:33.434 5c68 Delete type=2 #5248
+2024/10/13-23:24:33.434 5c68 Manual compaction at level-0 from ' A\x01\x00\x00\x05' @ 6304287 : 1 .. ' B\x01\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/10/13-23:24:35.586 60a8 Compacting 1@1 + 9@2 files
+2024/10/13-23:24:35.737 60a8 Generated table #5251@1: 36379 keys, 2228210 bytes
+2024/10/13-23:24:35.809 60a8 Generated table #5252@1: 10510 keys, 2147072 bytes
+2024/10/13-23:24:35.871 60a8 Generated table #5253@1: 8920 keys, 2132800 bytes
+2024/10/13-23:24:36.001 60a8 Generated table #5254@1: 82314 keys, 2227639 bytes
+2024/10/13-23:24:36.136 60a8 Generated table #5255@1: 98089 keys, 2247014 bytes
+2024/10/13-23:24:36.318 60a8 Generated table #5256@1: 97970 keys, 2248737 bytes
+2024/10/13-23:24:36.472 60a8 Generated table #5257@1: 97650 keys, 2248149 bytes
+2024/10/13-23:24:36.600 60a8 Generated table #5258@1: 98126 keys, 2249017 bytes
+2024/10/13-23:24:36.605 60a8 Generated table #5259@1: 948 keys, 59888 bytes
+2024/10/13-23:24:36.605 60a8 Compacted 1@1 + 9@2 files => 17788526 bytes
+2024/10/13-23:24:36.606 60a8 compacted to: files[ 0 1 28 0 0 0 0 ]
+2024/10/13-23:24:36.607 60a8 Delete type=2 #5226
+2024/10/13-23:24:36.607 60a8 Delete type=2 #5227
+2024/10/13-23:24:36.607 60a8 Delete type=2 #5228
+2024/10/13-23:24:36.607 60a8 Delete type=2 #5229
+2024/10/13-23:24:36.607 60a8 Delete type=2 #5230
+2024/10/13-23:24:36.607 60a8 Delete type=2 #5231
+2024/10/13-23:24:36.607 60a8 Delete type=2 #5232
+2024/10/13-23:24:36.607 60a8 Delete type=2 #5233
+2024/10/13-23:24:36.607 60a8 Delete type=2 #5234
+2024/10/13-23:24:36.607 60a8 Delete type=2 #5250
+2024/10/13-23:24:36.611 60a8 Compacting 1@1 + 10@2 files
+2024/10/13-23:24:36.800 60a8 Generated table #5260@1: 86791 keys, 2236536 bytes
+2024/10/13-23:24:36.989 60a8 Generated table #5261@1: 98655 keys, 2250789 bytes
+2024/10/13-23:24:37.154 60a8 Generated table #5262@1: 70238 keys, 2248998 bytes
+2024/10/13-23:24:37.256 60a8 Generated table #5263@1: 50924 keys, 2218282 bytes
+2024/10/13-23:24:37.303 60a8 Generated table #5264@1: 11727 keys, 2167362 bytes
+2024/10/13-23:24:37.345 60a8 Generated table #5265@1: 3285 keys, 2156994 bytes
+2024/10/13-23:24:37.386 60a8 Generated table #5266@1: 3234 keys, 2150007 bytes
+2024/10/13-23:24:37.436 60a8 Generated table #5267@1: 3942 keys, 2151237 bytes
+2024/10/13-23:24:37.497 60a8 Generated table #5268@1: 9886 keys, 2161918 bytes
+2024/10/13-23:24:37.628 60a8 Generated table #5269@1: 35912 keys, 2258696 bytes
+2024/10/13-23:24:37.632 60a8 Generated table #5270@1: 572 keys, 40329 bytes
+2024/10/13-23:24:37.632 60a8 Compacted 1@1 + 10@2 files => 22041148 bytes
+2024/10/13-23:24:37.633 60a8 compacted to: files[ 0 0 29 0 0 0 0 ]
+2024/10/13-23:24:37.634 60a8 Delete type=2 #5235
+2024/10/13-23:24:37.634 60a8 Delete type=2 #5236
+2024/10/13-23:24:37.634 60a8 Delete type=2 #5237
+2024/10/13-23:24:37.634 60a8 Delete type=2 #5238
+2024/10/13-23:24:37.634 60a8 Delete type=2 #5239
+2024/10/13-23:24:37.634 60a8 Delete type=2 #5240
+2024/10/13-23:24:37.634 60a8 Delete type=2 #5241
+2024/10/13-23:24:37.634 60a8 Delete type=2 #5242
+2024/10/13-23:24:37.634 60a8 Delete type=2 #5243
+2024/10/13-23:24:37.634 60a8 Delete type=2 #5244
+2024/10/13-23:24:37.634 60a8 Delete type=2 #5249
