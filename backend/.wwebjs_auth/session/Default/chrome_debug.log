@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [1014/055724.057:INFO:CONSOLE(123)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/yx/r/Z_XwkR_W5qW.js (123)
 [1014/055727.050:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
 [1014/055727.050:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
@@ -75,3 +76,5 @@ Subsequent non-fatal errors won't be logged; see https://fburl.com/debugjs.", so
 [1014/201007.392:INFO:CONSOLE(336)] "Failed to parse video contentType: video/mp4; codecs=avc1.42000a", source: https://static.whatsapp.net/rsrc.php/v3iHCc4/y9/l/rt/BeiyfnctLTj.js (336)
 [1014/201007.392:INFO:CONSOLE(336)] "Failed to parse video contentType: video/mp4; codecs=hev1.1.6.L93.B0", source: https://static.whatsapp.net/rsrc.php/v3iHCc4/y9/l/rt/BeiyfnctLTj.js (336)
 [1014/201013.396:INFO:CONSOLE(123)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/y4/r/qOz6qm5rJ33.js (123)
+=======
+>>>>>>> c989ed455f3cf39e5f2d88e714a3e88e968c0030

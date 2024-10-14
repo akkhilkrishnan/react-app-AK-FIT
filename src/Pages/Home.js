@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   formatDate,
   isJoiningDateThisMonth,
+  indianCurrency,
   parseDate,
 } from "../Helper/helperFunctions.js";
 
@@ -65,24 +66,28 @@ function Home() {
             style={{ backgroundColor: "#5fce9b" }}
             className="dashboard-card"
           >
-            <div style={{ fontSize: "26px" }}>{percentage}%</div>
-            <div>Sales</div>
+             <div className="dashcard-font">This month sales</div>
+
+            <div className="dashcard-number">
+            {indianCurrency.format(currentMonthSale)}</div>
           </div>
           <div
             style={{ backgroundColor: "#67b6d6" }}
             className="dashboard-card"
           >
-            <div style={{ fontSize: "26px" }}>{currentMonthMembers.length}</div>
-            <div>Walk-ins</div>
+            <div className="dashcard-font">Walk-ins</div>
+
+            <div className="dashcard-number">
+            {currentMonthMembers.length}</div>
           </div>
           <div
             style={{ backgroundColor: "#e87354" }}
             className="dashboard-card"
           >
-            <div style={{ fontSize: "26px" }}>
+             <div className="dashcard-font">Conversions</div>
+             <div className="dashcard-number">
               {convertedMembers.length}/{currentMonthMembers.length}
             </div>
-            <div>Conversions</div>
           </div>
           <div
             style={{ backgroundColor: "#ecc85d" }}
