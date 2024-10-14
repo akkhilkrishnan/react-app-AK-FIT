@@ -1,64 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
-import { useNavigate, useLocation } from "react-router-dom";
 import Modal from "../Components/Modal.tsx";
-import { formatDate, formatUrl } from "../Helper/helperFunctions.js";
-// const fs = require("fs");
-import axios from "axios";
-
-import { ReadData } from "../Components/readData.js";
+import TableView from "../Components/tableView.js";
+import CardView from "../Components/cardView.js";
 function ViewMembersInfo() {
-  const navigate = useNavigate();
-  const data = `Name: Neerav Bafna
-DOB: 14/06/2000
-Email: nkbafna14@gmail.com
-Ph no: 8939264998
-Emergency no: 9381024386
-Height: 171.5
-Weight: 92.20
-Medical condition: No
 
-
-Name: Bharat.M
-DOB: 15/08/1987
-Email:
-Ph no: 9884426430
-Emergency no: 9551510786
-Height: 185
-Weight: 96.25
-Medical condition: No
-
-
-Name: Bhaviya 
-DOB: 06/10/2000
-Email: bhaviyachawla2000@gmail.com
-Ph no: 9080984119
-Emergency no: 9789067807
-Height: 158
-Weight: 63
-Medical condition: No
-
-
-Name: Aswanth Kumar 
-DOB: 05/10/1993
-Email: nm.aswanth@gmail.com
-Ph no: 9789067807
-Emergency no: 9840724244
-Height: 176
-Weight: 90.15
-Medical condition: No`;
   const [membersData, setMembersData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-
   const [modalType, setModalType] = useState(null);
   const [txtData, setTxtData] = useState(null);
+  const [tablecardFlag, setTablecardFlag] = useState(true);
 
   useEffect(() => {
     getmembersData();
-
-    const jsonResultArray = convertToJSONArray(data);
-    // console.log("dataaa::::", JSON.stringify(jsonResultArray, null, 2));
-    console.log(txtData);
   }, []);
 
   const getmembersData = () => {
@@ -152,24 +106,7 @@ Medical condition: No`;
     return { expiryDate, memberStatusColor };
   };
 
-  const findColor = (expiryDate) => {
-    const [day, month, year] = expiryDate.split("-").map(Number);
-    const parsedExpiryDate = new Date(year, month - 1, day); // Month is 0-indexed
-
-    const oneDay = 24 * 60 * 60 * 1000; // milliseconds in a day
-    const diffDays = Math.round(
-      Math.abs((parsedExpiryDate - new Date()) / oneDay)
-    );
-
-    const memberStatusColor =
-      parsedExpiryDate <= new Date() // Expired
-        ? "#DC0000"
-        : diffDays <= 3 // About to expire
-        ? "#FFA500"
-        : "#4AAc2c"; // Valid
-
-    return memberStatusColor;
-  };
+ 
   const handleDelete = (index) => {
     console.log(membersData[index]);
     setOpenModal(true);
@@ -198,18 +135,7 @@ Medical condition: No`;
 
     return jsonArray;
   }
-  // const formatDate = (joiningDate) => {
-  //   const [day, month, year] = joiningDate.split("-").map(Number);
-  //   const parsedDate = new Date(year, month - 1, day); // Month is 0-indexed
 
-  //   const options = {
-  //     weekday: "short",
-  //     year: "numeric",
-  //     month: "short",
-  //     day: "numeric",
-  //   };
-  //   return parsedDate.toLocaleDateString("en-US", options);
-  // };
   return (
     // <div className="view-container">
     //   <div className="first-record-style">
@@ -291,6 +217,19 @@ Medical condition: No`;
     //     <Modal openModal={openModal} type={modalType} closeModal={closeModal} />
     //   )}
     // </div>
+    <div>
+      <button className="view-btn-style" onClick={()=>{
+        setTablecardFlag(!tablecardFlag)
+      }}
+      disabled={tablecardFlag}>Table View</button>
+      <button className="view-btn-style" onClick={()=>{
+        setTablecardFlag(!tablecardFlag)
+      }}
+      disabled={!tablecardFlag}>Card View</button>
+
+    <div>
+
+    </div>
     <div
       style={{
         overflow: "auto",
@@ -298,62 +237,8 @@ Medical condition: No`;
         margin: "auto",
       }}
     >
-      <table>
-        <tr>
-          <th>MEMBER IMG</th>
-          <th>MEMBER NAME</th>
-          <th>DATE OF JOINING</th>
-          <th>STATUS</th>
-          <th>START DATE</th>
-          <th>SUBSCRIPTION</th>
-          <th>PAID AMOUNT</th>
-          <th>EXPIRY DATE</th>
-          <th>Phone number</th>
-        </tr>
-        {membersData.map((member, index) => {
-          return (
-            <tr>
-              <td>
-                <img
-                  src={
-                    member.url
-                      ? formatUrl(member.url)
-                      : `/assets/images/image_NeeravBafna.jpg`
-                  }
-                  class="avatar"
-                  alt="Profile Avatar"
-                />
-              </td>
-              <td
-                key={index}
-                style={{
-                  color: `${
-                    member.membershipend
-                      ? findColor(member.membershipend)
-                      : "#E6E6FA"
-                  }`,
-                  fontWeight: 100,
-                  fontSize: "16px",
-                  textTransform: "capitalize",
-                }}
-              >
-                {member.name}
-              </td>
-              <td>{member.joiningDate}</td>
-
-              <td>{member.status}</td>
-
-              <td>{member.membershipstart ? member.membershipstart : "NA"}</td>
-
-              <td>{member.membership}</td>
-              <td>{member.totalPaid}</td>
-
-              <td>{member.membershipend ? member.membershipend : "NA"}</td>
-              <td>{member.membershipend ? member.phone : "NA"}</td>
-            </tr>
-          );
-        })}
-      </table>
+   {tablecardFlag?  <TableView membersData={membersData}/>:<CardView membersData={membersData}/>}
+    </div>
     </div>
   );
 }

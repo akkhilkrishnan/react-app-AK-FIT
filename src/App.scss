@@ -1366,17 +1366,27 @@ justify-content: space-around !important;
   padding: 30px;
   margin: 20px;
 }
+.dashcard-font
+{
+font-size: 24px;
+}
+.dashcard-number
+{
+font-size: 36px;
+font-weight: 300;
+}
 
 .dashboard-card{
   // border-radius: 10px;
   display: flex;
+  flex-direction: column;
   gap: 10px;
-  align-items: end;
-  justify-content: center;
+  align-items: start;
+  justify-content: end;
   padding: 10px;
   margin: 20px;
-  width: 160px;
-  height: 160px;
+  width: 250px;
+  height: 140px;
   align-content: end;
 opacity: 100%;
   cursor: pointer;
@@ -1414,13 +1424,15 @@ opacity: 100%;
 .CircularProgressbar .CircularProgressbar-text {fill:'white'}
 
 th{
-  font-size: 12px;
+  font-size: 14px;
   background-color: #173b38;
   font-weight: 400;
+  text-align: start;
 }
 table{
   margin: 20px 10px 10px 15px;
   border-collapse: collapse;
+  width: 100%;
 tr{
   background-color: #151b1e;
   &:hover{
@@ -1435,8 +1447,8 @@ tr{
 }
 }
 .avatar{
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%!important;
   object-fit: fill;
   padding:0px !important;
@@ -1445,3 +1457,66 @@ tr{
 
 
 
+.view-btn-style{
+  padding:10px 30px;
+  margin-top: 20px;
+  // float: right;
+  cursor: pointer;
+  // background-color: #225e59;
+  // color: white;
+}
+
+.membercard-style {
+  // background: rgba(13, 13, 57, 0.2);
+  background-color: #173b38;
+  min-width: 400px;
+  min-height: 300px;
+margin: 30px;
+  // background-image: linear-gradient(to bottom right, rgb(0, 0, 46), rgb(131, 9, 131));
+  box-shadow: 2px 1px 2px 1px rgb(27, 26, 26);
+  // padding: 30px 40px 20px 40px;
+  // height: auto;
+  border-radius: 10px;
+  &:hover {
+    box-shadow: 2px 1px 2px 1px rgb(27, 8, 8);
+  }
+  }
+
+  .add-btn {
+    width: 28px;
+    float: right;
+    cursor: pointer;
+    opacity: 75%;
+
+    &:hover {
+      width: 30px;
+      opacity: 100%;
+      // background-color: green($color: #000000);
+    }
+  }
+
+  p {
+    // color: #000;
+    font-size: 16px;
+    font-weight: 100;
+  }
+
+
+  .name-style{
+font-size: 24px;
+font-weight: 100;
+
+  }
+  .phn-style{
+    font-weight: 500;
+    color: #686868;
+    
+      }
+.status-style{
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-weight: 400;
+  font-size: 16px;
+  align-content: center;
+  justify-items: center;
+}
