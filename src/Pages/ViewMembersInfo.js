@@ -210,87 +210,9 @@ Medical condition: No`;
   //   };
   //   return parsedDate.toLocaleDateString("en-US", options);
   // };
-  return (
-    // <div className="view-container">
-    //   <div className="first-record-style">
-    //     {/* <h4>SNO</h4> */}
-    //     <h4>MEMBER NAME</h4>
-    //     <h4>DATE OF JOINING</h4>
-    //     <h4>STATUS</h4>
-    //     <h4>START DATE</h4>
-    //     <h4>SUBSCRIPTION</h4>
-    //     <h4>PAID AMOUNT</h4>
-    //     <h4>EXPIRY DATE</h4>
-    //   </div>
-
-    //   {membersData.map((member, index) => {
-    //     return (
-    //       <div
-    //         onClick={() => handleRecordClick(index)}
-    //         style={{
-    //           display: "flex",
-    //           justifyContent: "space-between",
-    //           gap: "10px",
-    //           alignItems: "center",
-    //         }}
-    //       >
-    //         <div key={index} className="record-style">
-    //           <div
-    //             style={{
-    //               color: `${
-    //                 member.membershipend
-    //                   ? findColor(member.membershipend)
-    //                   : "#E6E6FA"
-    //               }`,
-    //               fontWeight: 100,
-    //               fontSize: "16px",
-    //               textTransform: "capitalize",
-    //             }}
-    //           >
-    //             {member.name}
-    //           </div>
-    //           <div>
-    //             {member.joiningDate ? formatDate(member.joiningDate) : "NA"}
-    //           </div>
-    //           <div>{member.status ? member.status : "NA"}</div>
-    //           <div>
-    //             {member.membershipstart
-    //               ? formatDate(member.membershipstart)
-    //               : "NA"}
-    //           </div>
-    //           <div>
-    //             {member.membership !== "" ? member.membership : "Monthly"}
-    //           </div>
-    //           <div>
-    //             {member.totalPaid ? currencyFormatter(member.totalPaid) : "NA"}
-    //           </div>
-    //           <div className="exp-field-style">
-    //             {member.membershipend != null
-    //               ? formatDate(member.membershipend)
-    //               : "NA"}
-    //           </div>
-    //           <button
-    //             className="update-btn"
-    //             variant="contained"
-    //             onClick={() => {
-    //               extendHandle(index);
-    //             }}
-    //           >
-    //             Renew
-    //           </button>
-    //           <img
-    //             style={{ marginLeft: "10px", cursor: "pointer" }}
-    //             src="assets/images/deleteIcon.svg"
-    //             onClick={() => handleDelete(index)}
-    //           ></img>
-    //         </div>
-    //       </div>
-    //     );
-    //   })}
-    //   {openModal && (
-    //     <Modal openModal={openModal} type={modalType} closeModal={closeModal} />
-    //   )}
-    // </div>
+  return !membersData ? (
+    <div>lOADING</div>
+  ) : (
     <div
       style={{
         overflow: "auto",
@@ -300,7 +222,7 @@ Medical condition: No`;
     >
       <table>
         <tr>
-          <th>MEMBER IMG</th>
+          {/* <th>MEMBER IMG</th> */}
           <th>MEMBER NAME</th>
           <th>DATE OF JOINING</th>
           <th>STATUS</th>
@@ -313,17 +235,17 @@ Medical condition: No`;
         {membersData.map((member, index) => {
           return (
             <tr>
-              <td>
-                <img
-                  src={
-                    member.url
-                      ? formatUrl(member.url)
-                      : `/assets/images/image_NeeravBafna.jpg`
-                  }
-                  class="avatar"
-                  alt="Profile Avatar"
-                />
-              </td>
+              {/* <td>
+                  <img
+                    src={
+                      member.url
+                        ? formatUrl(member.url)
+                        : `/assets/images/image_NeeravBafna.jpg`
+                    }
+                    class="avatar"
+                    alt="Profile Avatar"
+                  />
+                </td> */}
               <td
                 key={index}
                 style={{

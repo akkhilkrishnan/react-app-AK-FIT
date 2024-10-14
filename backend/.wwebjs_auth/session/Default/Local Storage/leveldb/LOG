@@ -1,3 +1,6 @@
-2024/10/13-23:24:28.509 60a8 Reusing MANIFEST C:\code\Gym App\react-app-AK-FIT\backend\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2024/10/13-23:24:28.510 60a8 Recovering log #46
-2024/10/13-23:24:28.510 60a8 Reusing old log C:\code\Gym App\react-app-AK-FIT\backend\.wwebjs_auth\session\Default\Local Storage\leveldb/000046.log 
+2024/10/14-05:57:23.353 8c8 Reusing MANIFEST C:\code\Gym App\react-app-AK-FIT\backend\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
+2024/10/14-05:57:23.354 8c8 Recovering log #46
+2024/10/14-05:57:23.355 8c8 Reusing old log C:\code\Gym App\react-app-AK-FIT\backend\.wwebjs_auth\session\Default\Local Storage\leveldb/000046.log 
+2024/10/14-20:04:39.653 4f4c Level-0 table #50: started
+2024/10/14-20:04:39.768 4f4c Level-0 table #50: 15127 bytes OK
+2024/10/14-20:04:39.772 4f4c Delete type=0 #46
