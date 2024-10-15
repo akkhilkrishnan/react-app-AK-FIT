@@ -1368,25 +1368,28 @@ justify-content: space-around !important;
 }
 .dashcard-font
 {
-font-size: 24px;
+font-size: 20px;
+color: #000;
+
 }
 .dashcard-number
 {
-font-size: 36px;
-font-weight: 300;
+font-size: 28px;
+font-weight: 400;
+color: #000;
 }
 
 .dashboard-card{
   // border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  // gap: 10px;
   align-items: start;
   justify-content: end;
   padding: 10px;
   margin: 20px;
-  width: 250px;
-  height: 140px;
+  width: 200px;
+  height: 120px;
   align-content: end;
 opacity: 100%;
   cursor: pointer;
@@ -1503,20 +1506,29 @@ margin: 30px;
 
 
   .name-style{
-font-size: 24px;
-font-weight: 100;
+font-size: 20px;
+font-weight: 300;
+&:hover{
+  cursor: pointer;
+  text-decoration: underline;
+  transition: 0.1 ease-in;
+}
 
   }
   .phn-style{
+    font-size: 12px;
     font-weight: 500;
     color: #686868;
     
       }
 .status-style{
-  padding: 3px 10px;
+  display: flex;
+  padding: 2px 2px;
   border-radius: 5px;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
+  align-items: center;
   align-content: center;
+  justify-content: center;
   justify-items: center;
 }

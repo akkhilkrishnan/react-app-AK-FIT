@@ -1,88 +1,90 @@
-const { Client, LocalAuth, MessageMedia } = require("whatsapp-web.js");
+const { Client, LocalAuth } = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
 const axios = require("axios");
 const express = require("express");
 const bodyParser = require("body-parser");
-const addTrialMember = require("./server");
+const fs = require("fs");
+const path = require("path");
 const app = express();
 app.use(bodyParser.json());
 
-const fs = require("fs");
-const path = require("path");
-
 const client = new Client({
-  authStrategy: new LocalAuth(),
+  authStrategy: new LocalAuth({
+    dataPath: path.join(__dirname, "custom_auth_path"), // Specify a custom path if needed
+  }),
   puppeteer: {
     headless: true,
+    timeout: 60000,
   },
 });
-const memberDetail = [];
+
+// Generate QR code for authentication
 client.on("qr", (qr) => {
   qrcode.generate(qr, { small: true });
   console.log("Scan the QR code above to authenticate.");
 });
 
+// Client is ready
 client.on("ready", async () => {
   console.log("WhatsApp client is ready!");
-  const number = "918778814975@c.us";
+  const number = "918124640336@c.us";
   const message = "Hello from my GRIT BOT!";
   await client.sendMessage(number, message);
 });
 
+// Handle incoming messages
 client.on("message", async (message) => {
-  // console.log("Message received:", message.from);
-  if (
-    message.from === "120363329610073428@g.us" &&
-    message.body.toLowerCase().includes("name")
-  ) {
-    const data = parseMessage(message.body);
+  try {
+    // Check for messages from specific groups
+    if (
+      message.from === "120363329610073428@g.us" &&
+      message.body.toLowerCase().includes("name")
+    ) {
+      const data = parseMessage(message.body);
 
-    if (message.hasMedia) {
-      const media = await message.downloadMedia();
-      const fileName = `image_${data.name.replace(/ /g, "")}.jpg`; // Customize filename as needed
-      const imagePath = path.join(
-        __dirname,
-        "..",
-        "public",
-        "assets",
-        "memberImages",
-        fileName
-      ); // Adjust filename as needed
+      if (message.hasMedia) {
+        const media = await message.downloadMedia();
+        if (media) {
+          const fileName = `image_${data.name.replace(/ /g, "")}.jpg`;
+          const imagePath = path.join(
+            __dirname,
+            "..",
+            "public",
+            "assets",
+            "memberImages",
+            fileName
+          );
 
-      // Create the directory if it doesn't exist
-      // fs.mkdirSync(path.dirname(imagePath), { recursive: true });
+          // Create directory if it doesn't exist
+          fs.mkdirSync(path.dirname(imagePath), { recursive: true });
 
-      data.url = imagePath;
-      // Save the image to a file
-      fs.writeFileSync(imagePath, media.data, { encoding: "base64" });
-      console.log(`Image saved to ${imagePath}`);
-    } else {
-      console.log("Received a non-media message:", message.body);
+          // Save the image to a file
+          fs.writeFileSync(imagePath, media.data, { encoding: "base64" });
+          console.log(`Image saved to ${imagePath}`);
+          data.url = imagePath;
+        } else {
+          console.error("Media download failed.");
+        }
+      } else {
+        console.log("Received a non-media message:", message.body);
+      }
+
+      await sendToServer(data, "memberdetail");
     }
-    sendToServer(data, "memberdetail");
-  }
-  if (
-    message.from === "120363346571790033@g.us" &&
-    message.body.toLowerCase().includes("name")
-  ) {
-    const data = parseMessage(message.body);
-    sendToServer(data, "memberpayment");
+
+    if (
+      message.from === "120363346571790033@g.us" &&
+      message.body.toLowerCase().includes("name")
+    ) {
+      const data = parseMessage(message.body);
+      await sendToServer(data, "memberpayment");
+    }
+  } catch (error) {
+    console.error("Error processing message:", error);
   }
 });
 
-// client.on("message", async (msg) => {
-//   if (msg.hasMedia) {
-//     const media = await msg.downloadMedia();
-//     const fileName = `image_${msg.id.id}.jpg`; // Customize filename as needed
-//     const imagePath = path.join(__dirname, fileName);
-
-//     // Save the image to a file
-//     fs.writeFileSync(imagePath, media.data, { encoding: "base64" });
-//     console.log(`Image saved to ${imagePath}`);
-//   } else {
-//     console.log("Received a non-media message:", msg.body);
-//   }
-// });
+// Function to parse message body
 function parseMessage(messageBody) {
   const data = {};
   const lines = messageBody.split("\n");
@@ -90,7 +92,6 @@ function parseMessage(messageBody) {
   lines.forEach((line) => {
     const [key, value] = line.split(": ").map((item) => item.trim());
     if (key && value) {
-      // Format keys to match your MongoDB schema
       switch (key) {
         case "Name":
           data.name = value;
@@ -121,8 +122,9 @@ function parseMessage(messageBody) {
       }
     }
   });
-  //add fields
-  const joiningDate = new Date(); // Current date and time
+
+  // Add additional fields
+  const joiningDate = new Date();
   const formattedJoiningDate = `${String(joiningDate.getDate()).padStart(
     2,
     "0"
@@ -130,44 +132,42 @@ function parseMessage(messageBody) {
     2,
     "0"
   )}-${joiningDate.getFullYear()}`;
-  // data.imgurl = imgurl;
-  data.joiningDate = formattedJoiningDate; // Midnight time
-  data.membership = "NA";
-  data.membershipAmount = 0;
-  data.member_id = null;
-  data.membershipstart = null;
-  data.membershipend = null;
-  data.invoicenumber = null;
-  data.invoicedate = null;
-  data.lastpaymentdate = null;
-  data.lastpaymentmode = null;
-  data.totalPaid = 0;
-  data.plan = null;
-  data.diet = null;
-  data.trainer = null;
-  data.paymentpending = null;
-  data.pendingamount = 0;
-  data.status = "Trial";
+
+  Object.assign(data, {
+    joiningDate: formattedJoiningDate,
+    membership: "NA",
+    membershipAmount: 0,
+    member_id: null,
+    membershipstart: null,
+    membershipend: null,
+    invoicenumber: null,
+    invoicedate: null,
+    lastpaymentdate: null,
+    lastpaymentmode: null,
+    totalPaid: 0,
+    plan: null,
+    diet: null,
+    trainer: null,
+    paymentpending: null,
+    pendingamount: 0,
+    status: "Trial",
+  });
 
   return data;
 }
+
+// Function to send data to server
 async function sendToServer(data, flag) {
   try {
-    if (flag === "memberdetail") {
-      const response = await axios.post(
-        "http://localhost:5000/api/memberdetail",
-        data
-      );
-      console.log("Server response:", response.data);
-    } else {
-      const response = await axios.post(
-        "http://localhost:5000/api/memberpayment",
-        data
-      );
-      console.log("Server response:", response.data);
-    }
+    const url =
+      flag === "memberdetail"
+        ? "http://localhost:5000/api/memberdetail"
+        : "http://localhost:5000/api/memberpayment";
+    const response = await axios.post(url, data);
+    console.log("Server response:", response.data);
   } catch (error) {
     console.error("Error sending data to server:", error);
   }
 }
+
 module.exports = client; // Export the client instance

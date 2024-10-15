@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-2024/10/14-05:14:57.329 53e0 Reusing MANIFEST C:\code\Gym App\react-app-AK-FIT\backend\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2024/10/14-05:14:57.330 53e0 Recovering log #46
-2024/10/14-05:14:57.331 53e0 Reusing old log C:\code\Gym App\react-app-AK-FIT\backend\.wwebjs_auth\session\Default\Local Storage\leveldb/000046.log 
-=======
-2024/10/14-11:49:40.608 4428 Reusing MANIFEST C:\kratos\react-app-AK-FIT\backend\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2024/10/14-11:49:40.610 4428 Recovering log #3
-2024/10/14-11:49:40.611 4428 Reusing old log C:\kratos\react-app-AK-FIT\backend\.wwebjs_auth\session\Default\Local Storage\leveldb/000003.log 
->>>>>>> c989ed455f3cf39e5f2d88e714a3e88e968c0030

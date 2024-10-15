@@ -9,47 +9,26 @@ function ViewMembersInfo() {
   const [modalType, setModalType] = useState(null);
   const [txtData, setTxtData] = useState(null);
   const [tablecardFlag, setTablecardFlag] = useState(true);
-
   useEffect(() => {
-    getmembersData();
+    const fetchMemberDetails = setInterval(() => {
+      fetch("http://localhost:5000/fetchMemberDetails", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("memberDetails:::::", data);
+          setMembersData(data); // Update state with fetched data
+        })
+        .catch((error) => {
+          console.error("Error fetching member details:", error);
+        });
+    }, 5000);
+
+    return () => clearInterval(fetchMemberDetails);
   }, []);
-
-  const getmembersData = () => {
-    fetch("http://localhost:5000/data", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // body: JSON.stringify(),
-    })
-      .then((response) => {
-        // console.log(response.data)
-        return response.json();
-      })
-      .then((data) => {
-        // console.log("data", data);
-        setMembersData(data);
-      });
-  };
-
-  const fetchMemberDetails = (id) => {
-    fetch("http://localhost:5000/fetchMemberDetails", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // body: JSON.stringify(),
-    })
-      .then((response) => {
-        // console.log(response.data)
-        return response.json();
-      })
-      .then((data) => {
-        console.log("memberDetails:::::", data);
-        // setMembersData(data)
-      });
-  };
-
   const extendHandle = (record_index) => {
     // let joiningDate = new Date(membersData[record_index].DOJ);
     // membersData[record_index].DOJ = joiningDate.setDate(

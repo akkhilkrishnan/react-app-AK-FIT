@@ -43,28 +43,29 @@ async function run() {
     );
     data = await client.db("GritDB").collection("Members").find().toArray();
 
-    sortedData = await data.sort((a, b) => {
-      // Check if membershipStart exists and is a string
-      if (!a.joiningDate || typeof a.joiningDate !== "string") {
-        return 1; // Move undefined or non-string values to the end
-      }
-      if (!b.joiningDate || typeof b.joiningDate !== "string") {
-        return -1; // Move undefined or non-string values to the end
-      }
+    // sortedData = await data.sort((a, b) => {
+    //   // Check if membershipStart exists and is a string
+    //   if (!a.joiningDate || typeof a.joiningDate !== "string") {
+    //     return 1; // Move undefined or non-string values to the end
+    //   }
+    //   if (!b.joiningDate || typeof b.joiningDate !== "string") {
+    //     return -1; // Move undefined or non-string values to the end
+    //   }
 
-      const aDateParts = a.joiningDate.split("-"); // Split by '-'
-      const bDateParts = b.joiningDate.split("-");
+    //   const aDateParts = a.joiningDate.split("-"); // Split by '-'
+    //   const bDateParts = b.joiningDate.split("-");
 
-      // Create Date objects from the parts (YYYY-MM-DD)
-      const aDate = new Date(
-        `${aDateParts[2]}-${aDateParts[1]}-${aDateParts[0]}`
-      );
-      const bDate = new Date(
-        `${bDateParts[2]}-${bDateParts[1]}-${bDateParts[0]}`
-      );
+    //   // Create Date objects from the parts (YYYY-MM-DD)
+    //   const aDate = new Date(
+    //     `${aDateParts[2]}-${aDateParts[1]}-${aDateParts[0]}`
+    //   );
+    //   const bDate = new Date(
+    //     `${bDateParts[2]}-${bDateParts[1]}-${bDateParts[0]}`
+    //   );
 
-      return bDate - aDate; // Sort in Descending order
-    });
+    //   return bDate - aDate; // Sort in Descending order
+    // }
+    // );
   } catch (error) {
     console.log(error);
   }
@@ -85,6 +86,21 @@ const fetchMemberDetails = async (id) => {
     // await client.close();
   } catch (error) {
     console.log(error);
+  }
+};
+const updateUser = async (name, newAge) => {
+  try {
+    const result = await client
+      .db("GritDB")
+      .collection("Members")
+      .findOneAndUpdate(
+        { name }, // Filter criteria
+        { age: newAge }, // Update data
+        { new: true } // Return the updated document
+      );
+    console.log("Updated User:", result);
+  } catch (error) {
+    console.error("Error updating user:", error);
   }
 };
 
