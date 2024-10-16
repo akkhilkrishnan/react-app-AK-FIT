@@ -94,8 +94,10 @@ function Card(props) {
   return (
     <>
       <div className="card-part">
-        <Timeline steps={""} stepNumber={""} />
-        <div style={{ height: "30px", margin: "0px 0 20px 0" }}>
+        {/* <Timeline steps={"5"} stepNumber={"2"} /> */}
+        <div
+        //  style={{ height: "30px", margin: "0px 0 20px 0" }}
+        >
           {!showSave && oneWeekWorkout.length > 0 && (
             <p className="success-style">{successMsg + " " + day + "!"}</p>
           )}
@@ -113,8 +115,8 @@ function Card(props) {
                   <img
                     className="add-btn"
                     src="assets/images/add-workout.svg"
-                    alt="save image"
                     onClick={addWorkoutHandle}
+                    alt=""
                   />
                 )}
               </div>
@@ -139,7 +141,7 @@ function Card(props) {
                               />
                             ) : (
                               <div className="card-list">
-                                {editInput && editIndex == i
+                                {editInput && editIndex === i
                                   ? editInput
                                   : workout}
                               </div>

@@ -17,6 +17,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
+import { Dropdown } from "react-bootstrap";
 function DesignWorkoutPage() {
   // let workoutListArr = [];
 
@@ -246,7 +247,7 @@ function DesignWorkoutPage() {
               </small>
             </LocalizationProvider>
           </FormControl>
-          <FormControl>
+          {/* <FormControl>
             <FormLabel id="demo-row-radio-buttons-group-label">
               Specifications
             </FormLabel>
@@ -280,6 +281,25 @@ function DesignWorkoutPage() {
                 label="Others"
               />
             </RadioGroup>
+          </FormControl> */}
+          <FormControl>
+            <InputLabel id="demo-simple-select-label">
+              Specifications
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              name="workouttype"
+              value={designDetails.workouttype}
+              label="Type of workout"
+              onChange={handleChange}
+              size={"small"}
+              // prop sx={{ width: 200 }}
+            >
+              <MenuItem value="strength">Strength</MenuItem>
+              <MenuItem value="cardio">Cardio</MenuItem>
+              <MenuItem value="core">Core</MenuItem>
+            </Select>
           </FormControl>
           <FormControl>
             <TextField

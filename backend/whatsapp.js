@@ -29,7 +29,7 @@ client.on("ready", async () => {
   console.log("WhatsApp client is ready!");
   const number = "918124640336@c.us";
   const message = "Hello from my GRIT BOT!";
-  await client.sendMessage(number, message);
+  // await client.sendMessage(number, message);
 });
 
 // Handle incoming messages
@@ -40,7 +40,7 @@ client.on("message", async (message) => {
       message.from === "120363329610073428@g.us" &&
       message.body.toLowerCase().includes("name")
     ) {
-      const data = parseMessage(message.body);
+      const data = parseMessage(message.body, "detail");
 
       if (message.hasMedia) {
         const media = await message.downloadMedia();
@@ -76,82 +76,140 @@ client.on("message", async (message) => {
       message.from === "120363346571790033@g.us" &&
       message.body.toLowerCase().includes("name")
     ) {
-      const data = parseMessage(message.body);
+      const data = parseMessage(message.body, "payment");
       await sendToServer(data, "memberpayment");
     }
   } catch (error) {
     console.error("Error processing message:", error);
   }
 });
+const computeExpiryDate = (startdate, membership) => {
+  let expiryDate;
+
+  // Parse the dd/mm/yyyy format
+  if (startdate && membership) {
+    const [day, month, year] = startdate.split("/").map(Number);
+    const startDateObj = new Date(year, month - 1, day);
+    switch (membership.toLowerCase().trim()) {
+      case "monthly":
+        expiryDate = new Date(
+          startDateObj.setDate(startDateObj.getDate() + 30)
+        );
+        break;
+      case "quarterly":
+        expiryDate = new Date(
+          startDateObj.setDate(startDateObj.getDate() + 90)
+        );
+        break;
+      case "half yearly":
+        expiryDate = new Date(
+          startDateObj.setDate(startDateObj.getDate() + 180)
+        );
+        break;
+      case "annual":
+        expiryDate = new Date(
+          startDateObj.setFullYear(startDateObj.getFullYear() + 1)
+        );
+        break;
+      default:
+        break;
+    }
+  }
+  return expiryDate;
+};
+
+// Example Usage
+const startDate = "01/10/2024"; // Example start date in dd/mm/yyyy format
+const membership = "monthly"; // Example membership type
+
+const expiryDate = computeExpiryDate(startDate, membership);
+console.log(expiryDate); // Outputs the expiry date
 
 // Function to parse message body
-function parseMessage(messageBody) {
+function parseMessage(messageBody, flag) {
   const data = {};
   const lines = messageBody.split("\n");
 
   lines.forEach((line) => {
-    const [key, value] = line.split(": ").map((item) => item.trim());
+    const [key, value] = line.split(":").map((item) => item.trim());
     if (key && value) {
-      switch (key) {
-        case "Name":
+      switch (key.replace(/\s+/g, "").toLowerCase()) {
+        case "name":
           data.name = value;
           break;
-        case "DOB":
+        case "dob":
           data.dateofbirth = value;
           break;
-        case "Email":
+        case "email":
           data.email = value;
           break;
-        case "Ph no":
+        case "phno":
           data.phone = value;
           break;
-        case "Emergency no":
+        case "emergencyno":
           data.emergencyNumber = value;
           break;
-        case "Height":
+        case "height":
           data.height = parseFloat(value);
           break;
-        case "Weight":
+        case "weight":
           data.weight = parseFloat(value);
           break;
-        case "Medical condition":
+        case "medicalcondition":
           data.medicalCondition = value;
+          break;
+        case "amountpaid":
+          data.totalPaid = value;
+          break;
+        case "membership":
+          data.membership = value;
+          break;
+        case "startdate":
+          data.membershipstart = value;
+          break;
+        case "paymentmode":
+          data.lastpaymentmode = value;
           break;
         default:
           break;
       }
     }
   });
-
   // Add additional fields
-  const joiningDate = new Date();
-  const formattedJoiningDate = `${String(joiningDate.getDate()).padStart(
-    2,
-    "0"
-  )}-${String(joiningDate.getMonth() + 1).padStart(
-    2,
-    "0"
-  )}-${joiningDate.getFullYear()}`;
-
-  Object.assign(data, {
-    joiningDate: formattedJoiningDate,
-    membership: "NA",
-    membershipAmount: 0,
-    member_id: null,
-    membershipstart: null,
-    membershipend: null,
-    invoicenumber: null,
-    invoicedate: null,
-    lastpaymentdate: null,
-    lastpaymentmode: null,
-    totalPaid: 0,
-    plan: null,
-    diet: null,
-    trainer: null,
-    paymentpending: null,
-    pendingamount: 0,
-    status: "Trial",
-  });
+  if (flag === "detail")
+    Object.assign(data, {
+      joiningDate: new Date(),
+      membership: "NA",
+      membershipAmount: 0,
+      membershipstart: null,
+      membershipend: null,
+      invoicenumber: null,
+      invoicedate: null,
+      lastpaymentdate: null,
+      lastpaymentmode: null,
+      totalPaid: 0,
+      plan: null,
+      diet: null,
+      trainer: null,
+      paymentpending: null,
+      pendingamount: 0,
+      status: "Trial",
+      lastupdatedTime: new Date(),
+    });
+  else if (flag === "payment")
+    Object.assign(data, {
+      joiningDate: new Date(),
+      membershipend: computeExpiryDate(data.membershipstart, data.membership),
+      invoicenumber: null,
+      invoicedate: null,
+      lastpaymentdate: new Date(),
+      plan: null,
+      diet: null,
+      trainer: null,
+      paymentpending: null,
+      pendingamount: 0,
+      lastupdatedTime: new Date(),
+    });
 
   return data;
 }

@@ -1,2 +1,3 @@
-2024/10/15-13:53:37.362 49c Creating DB C:\code\Gym App\react-app-AK-FIT\backend\custom_auth_path\session\Default\Service Worker\Database since it was missing.
-2024/10/15-13:53:37.391 49c Reusing MANIFEST C:\code\Gym App\react-app-AK-FIT\backend\custom_auth_path\session\Default\Service Worker\Database/MANIFEST-000001
+2024/10/16-23:55:54.883 2294 Reusing MANIFEST C:\code\Gym App\GRIT BOT\backend\custom_auth_path\session\Default\Service Worker\Database/MANIFEST-000001
+2024/10/16-23:55:54.884 2294 Recovering log #3
+2024/10/16-23:55:54.886 2294 Reusing old log C:\code\Gym App\GRIT BOT\backend\custom_auth_path\session\Default\Service Worker\Database/000003.log 

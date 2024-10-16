@@ -11,22 +11,41 @@ const Modal = (props) => {
     <div
       className="overlay"
       style={{
-        height: `${type === "delete" ? "25%" : "50%"}`,
-        width: `${type === "delete" ? "30%" : "60%"}`,
+        height: `${type === "delete" || "deny" ? "25%" : "50%"}`,
+        width: `${type === "delete" || "deny" ? "30%" : "60%"}`,
 
-        top: `${type === "delete" ? "25%" : "10%"}`,
+        top: `${type === "delete" || "deny" ? "25%" : "10%"}`,
       }}
     >
       {type === "delete" && (
         <div>
           <p style={{ textAlign: "center", fontSize: "14px" }}>
-            Are you sure you want to remove the member?
+            Are you sure you want to deny?
           </p>
           <div className="overlay-delete-btns">
-            <button className="btn-style" onClick={props.closeModal}>
+            <button
+              className="btn-style"
+              onClick={() => props.closeModal("yes")}
+            >
               Yes
             </button>
             <button className="btn-style" onClick={props.closeModal}>
+              No
+            </button>
+          </div>
+        </div>
+      )}
+
+      {type === "deny" && (
+        <div>
+          <p style={{ textAlign: "center", fontSize: "14px" }}>
+            Are you sure you want to deny?
+          </p>
+          <div className="overlay-delete-btns">
+            <button className="deny-btn-style" onClick={props.closeModal}>
+              Yes
+            </button>
+            <button className="deny-btn-style" onClick={props.closeModal}>
               No
             </button>
           </div>

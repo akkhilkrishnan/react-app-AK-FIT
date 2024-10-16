@@ -1,93 +1,27 @@
-2024/10/15-13:55:41.395 4850 Reusing MANIFEST C:\code\Gym App\react-app-AK-FIT\backend\custom_auth_path\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/10/15-13:55:41.396 4850 Recovering log #103
-2024/10/15-13:55:41.691 4850 Reusing old log C:\code\Gym App\react-app-AK-FIT\backend\custom_auth_path\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000103.log 
-2024/10/15-13:55:44.415 4850 Level-0 table #111: started
-2024/10/15-13:55:44.487 4850 Level-0 table #111: 487707 bytes OK
-2024/10/15-13:55:44.493 4850 Delete type=0 #103
-2024/10/15-13:55:44.494 4850 Manual compaction at level-0 from '\x00\x16\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x17\x00\x00\x00' @ 0 : 0; will stop at (end)
-2024/10/15-13:55:44.496 4850 Level-0 table #113: started
-2024/10/15-13:55:44.522 4850 Level-0 table #113: 249 bytes OK
-2024/10/15-13:55:44.526 4850 Delete type=0 #110
-2024/10/15-13:55:44.527 4850 Manual compaction at level-0 from '\x00\x17\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x18\x00\x00\x00' @ 0 : 0; will stop at '\x00\x17\x00\x00\x05' @ 751786 : 0
-2024/10/15-13:55:44.527 4850 Compacting 1@0 + 1@1 files
-2024/10/15-13:55:44.585 4850 Generated table #114@0: 17022 keys, 284387 bytes
-2024/10/15-13:55:44.585 4850 Compacted 1@0 + 1@1 files => 284387 bytes
-2024/10/15-13:55:44.589 4850 compacted to: files[ 0 1 4 0 0 0 0 ]
-2024/10/15-13:55:44.590 4850 Delete type=2 #113
-2024/10/15-13:55:44.590 4850 Manual compaction at level-0 from '\x00\x17\x00\x00\x05' @ 751786 : 0 .. '\x00\x18\x00\x00\x00' @ 0 : 0; will stop at (end)
-2024/10/15-13:55:49.400 68d0 Compacting 1@1 + 4@2 files
-2024/10/15-13:55:49.722 68d0 Generated table #115@1: 43306 keys, 2217794 bytes
-2024/10/15-13:55:49.958 68d0 Generated table #116@1: 24208 keys, 2180624 bytes
-2024/10/15-13:55:50.146 68d0 Generated table #117@1: 23922 keys, 2201299 bytes
-2024/10/15-13:55:50.518 68d0 Generated table #118@1: 79134 keys, 2195246 bytes
-2024/10/15-13:55:50.518 68d0 Compacted 1@1 + 4@2 files => 8794963 bytes
-2024/10/15-13:55:50.522 68d0 compacted to: files[ 0 0 4 0 0 0 0 ]
-2024/10/15-13:55:50.523 68d0 Delete type=2 #111
-2024/10/15-13:56:19.360 68d0 Level-0 table #120: started
-2024/10/15-13:56:19.557 68d0 Level-0 table #120: 1086783 bytes OK
-2024/10/15-13:56:19.565 68d0 Delete type=2 #105
-2024/10/15-13:56:19.565 68d0 Delete type=2 #106
-2024/10/15-13:56:19.565 68d0 Delete type=2 #107
-2024/10/15-13:56:19.566 68d0 Delete type=2 #108
-2024/10/15-13:56:19.566 68d0 Delete type=0 #112
-2024/10/15-13:56:19.566 68d0 Delete type=2 #114
-2024/10/15-13:56:19.574 68d0 Compacting 1@1 + 4@2 files
-2024/10/15-13:56:19.967 68d0 Generated table #121@1: 43322 keys, 2216642 bytes
-2024/10/15-13:56:20.288 68d0 Generated table #122@1: 25934 keys, 2181774 bytes
-2024/10/15-13:56:20.440 68d0 Generated table #123@1: 23915 keys, 2201446 bytes
-2024/10/15-13:56:20.854 68d0 Generated table #124@1: 74071 keys, 2216449 bytes
-2024/10/15-13:56:20.948 68d0 Generated table #125@1: 20546 keys, 463552 bytes
-2024/10/15-13:56:20.948 68d0 Compacted 1@1 + 4@2 files => 9279863 bytes
-2024/10/15-13:56:20.949 68d0 compacted to: files[ 0 0 5 0 0 0 0 ]
-2024/10/15-13:56:36.476 53fc Level-0 table #127: started
-2024/10/15-13:56:36.554 53fc Level-0 table #127: 1024000 bytes OK
-2024/10/15-13:56:36.559 53fc Delete type=2 #115
-2024/10/15-13:56:36.559 53fc Delete type=2 #116
-2024/10/15-13:56:36.559 53fc Delete type=2 #117
-2024/10/15-13:56:36.559 53fc Delete type=2 #118
-2024/10/15-13:56:36.559 53fc Delete type=0 #119
-2024/10/15-13:56:36.559 53fc Delete type=2 #120
-2024/10/15-13:56:36.645 68d0 Compacting 1@1 + 5@2 files
-2024/10/15-13:56:36.931 68d0 Generated table #128@1: 43296 keys, 2216314 bytes
-2024/10/15-13:56:37.157 68d0 Generated table #129@1: 26078 keys, 2183079 bytes
-2024/10/15-13:56:37.387 68d0 Generated table #130@1: 23926 keys, 2203749 bytes
-2024/10/15-13:56:37.755 68d0 Generated table #131@1: 69070 keys, 2208791 bytes
-2024/10/15-13:56:38.092 68d0 Generated table #132@1: 43728 keys, 976724 bytes
-2024/10/15-13:56:38.092 68d0 Compacted 1@1 + 5@2 files => 9788657 bytes
-2024/10/15-13:56:38.094 68d0 compacted to: files[ 0 0 5 0 0 0 0 ]
-2024/10/15-13:56:38.095 68d0 Delete type=2 #121
-2024/10/15-13:56:38.095 68d0 Delete type=2 #122
-2024/10/15-13:56:38.095 68d0 Delete type=2 #123
-2024/10/15-13:56:38.095 68d0 Delete type=2 #124
-2024/10/15-13:56:38.095 68d0 Delete type=2 #125
-2024/10/15-13:56:38.095 68d0 Delete type=2 #127
-2024/10/15-13:57:29.418 68d0 Level-0 table #134: started
-2024/10/15-13:57:29.536 68d0 Level-0 table #134: 1032143 bytes OK
-2024/10/15-13:57:29.541 68d0 Delete type=0 #126
-2024/10/15-13:57:29.558 68d0 Compacting 1@1 + 5@2 files
-2024/10/15-13:57:29.849 68d0 Generated table #135@1: 40219 keys, 2212086 bytes
-2024/10/15-13:57:30.037 68d0 Generated table #136@1: 33190 keys, 2192982 bytes
-2024/10/15-13:57:30.222 68d0 Generated table #137@1: 21884 keys, 2201668 bytes
-2024/10/15-13:57:30.430 68d0 Generated table #138@1: 57660 keys, 2194350 bytes
-2024/10/15-13:57:30.681 68d0 Generated table #139@1: 66413 keys, 1474544 bytes
-2024/10/15-13:57:30.681 68d0 Compacted 1@1 + 5@2 files => 10275630 bytes
-2024/10/15-13:57:30.684 68d0 compacted to: files[ 0 0 5 0 0 0 0 ]
-2024/10/15-13:57:59.595 5394 Level-0 table #141: started
-2024/10/15-13:57:59.713 5394 Level-0 table #141: 989912 bytes OK
-2024/10/15-13:57:59.718 5394 Delete type=2 #128
-2024/10/15-13:57:59.718 5394 Delete type=2 #129
-2024/10/15-13:57:59.718 5394 Delete type=2 #130
-2024/10/15-13:57:59.719 5394 Delete type=2 #131
-2024/10/15-13:57:59.719 5394 Delete type=2 #132
-2024/10/15-13:57:59.719 5394 Delete type=0 #133
-2024/10/15-13:57:59.719 5394 Delete type=2 #134
-2024/10/15-13:57:59.742 5394 Compacting 1@1 + 3@2 files
-2024/10/15-13:57:59.976 5394 Generated table #142@1: 42639 keys, 2215923 bytes
-2024/10/15-13:58:00.222 5394 Generated table #143@1: 28340 keys, 2186305 bytes
-2024/10/15-13:58:00.398 5394 Generated table #144@1: 22073 keys, 2083452 bytes
-2024/10/15-13:58:00.398 5394 Compacted 1@1 + 3@2 files => 6485680 bytes
-2024/10/15-13:58:00.399 5394 compacted to: files[ 0 0 5 0 0 0 0 ]
-2024/10/15-13:58:00.400 5394 Delete type=2 #135
-2024/10/15-13:58:00.400 5394 Delete type=2 #136
-2024/10/15-13:58:00.400 5394 Delete type=2 #137
-2024/10/15-13:58:00.400 5394 Delete type=2 #141
+2024/10/16-23:56:16.828 73e0 Reusing MANIFEST C:\code\Gym App\GRIT BOT\backend\custom_auth_path\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/10/16-23:56:16.830 73e0 Recovering log #2079
+2024/10/16-23:56:16.848 73e0 Reusing old log C:\code\Gym App\GRIT BOT\backend\custom_auth_path\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/002079.log 
+2024/10/16-23:56:19.355 73e0 Level-0 table #2091: started
+2024/10/16-23:56:19.385 73e0 Level-0 table #2091: 88525 bytes OK
+2024/10/16-23:56:19.393 73e0 Delete type=0 #2079
+2024/10/16-23:56:19.395 73e0 Manual compaction at level-0 from '\x00\xde\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\xdf\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/10/16-23:56:23.982 a18 Compacting 1@1 + 8@2 files
+2024/10/16-23:56:24.284 a18 Generated table #2092@1: 83564 keys, 2232454 bytes
+2024/10/16-23:56:24.675 a18 Generated table #2093@1: 86213 keys, 2267668 bytes
+2024/10/16-23:56:24.899 a18 Generated table #2094@1: 45581 keys, 2206578 bytes
+2024/10/16-23:56:25.012 a18 Generated table #2095@1: 19486 keys, 2173543 bytes
+2024/10/16-23:56:25.222 a18 Generated table #2096@1: 23263 keys, 2195417 bytes
+2024/10/16-23:56:25.457 a18 Generated table #2097@1: 34602 keys, 2177381 bytes
+2024/10/16-23:56:25.900 a18 Generated table #2098@1: 102084 keys, 2253851 bytes
+2024/10/16-23:56:25.924 a18 Generated table #2099@1: 3268 keys, 81504 bytes
+2024/10/16-23:56:25.924 a18 Compacted 1@1 + 8@2 files => 15588396 bytes
+2024/10/16-23:56:25.925 a18 compacted to: files[ 0 0 8 0 0 0 0 ]
+2024/10/16-23:56:25.926 a18 Delete type=2 #2081
+2024/10/16-23:56:25.926 a18 Delete type=2 #2082
+2024/10/16-23:56:25.926 a18 Delete type=2 #2083
+2024/10/16-23:56:25.926 a18 Delete type=2 #2084
+2024/10/16-23:56:25.926 a18 Delete type=2 #2085
+2024/10/16-23:56:25.927 a18 Delete type=2 #2086
+2024/10/16-23:56:25.927 a18 Delete type=2 #2087
+2024/10/16-23:56:25.927 a18 Delete type=2 #2088
+2024/10/16-23:56:25.927 a18 Delete type=2 #2091

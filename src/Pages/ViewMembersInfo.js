@@ -3,32 +3,18 @@ import Button from "@mui/material/Button";
 import Modal from "../Components/Modal.tsx";
 import TableView from "../Components/tableView.js";
 import CardView from "../Components/cardView.js";
+import useFetch from "../Hooks/useFetch.js";
+import CardV from "../Components/cardV.js";
 function ViewMembersInfo() {
-  const [membersData, setMembersData] = useState([]);
+  // const [membersData, setMembersData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [modalType, setModalType] = useState(null);
   const [txtData, setTxtData] = useState(null);
   const [tablecardFlag, setTablecardFlag] = useState(true);
-  useEffect(() => {
-    const fetchMemberDetails = setInterval(() => {
-      fetch("http://localhost:5000/fetchMemberDetails", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("memberDetails:::::", data);
-          setMembersData(data); // Update state with fetched data
-        })
-        .catch((error) => {
-          console.error("Error fetching member details:", error);
-        });
-    }, 5000);
+  const { membersData, loading, error } = useFetch(
+    `http://localhost:5000/data?limit=${50}&skip=${0}&flag=${""}`
+  );
 
-    return () => clearInterval(fetchMemberDetails);
-  }, []);
   const extendHandle = (record_index) => {
     // let joiningDate = new Date(membersData[record_index].DOJ);
     // membersData[record_index].DOJ = joiningDate.setDate(
@@ -196,7 +182,7 @@ function ViewMembersInfo() {
     // </div>
     <div>
       <button
-        className="view-btn-style"
+        className="view-btn-style tbl"
         onClick={() => {
           setTablecardFlag(!tablecardFlag);
         }}
@@ -205,7 +191,7 @@ function ViewMembersInfo() {
         Table View
       </button>
       <button
-        className="view-btn-style"
+        className="view-btn-style crd"
         onClick={() => {
           setTablecardFlag(!tablecardFlag);
         }}
@@ -226,6 +212,7 @@ function ViewMembersInfo() {
           <TableView membersData={membersData} />
         ) : (
           <CardView membersData={membersData} />
+          // <CardV membersData={membersData} />
         )}
       </div>
     </div>

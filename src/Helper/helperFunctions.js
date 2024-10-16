@@ -1,14 +1,23 @@
-export const formatDate = (joiningDate) => {
-  const [day, month, year] = joiningDate.split("-").map(Number);
-  const parsedDate = new Date(year, month - 1, day); // Month is 0-indexed
-
+export const formatDate = (d) => {
+  const date = new Date(d);
+  // Options for formatting
   const options = {
-    weekday: "short",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
+    weekday: "short", // 'Tue'
+    year: "numeric", // '2024'
+    month: "short", // 'Oct'
+    day: "numeric", // '17'
   };
-  return parsedDate.toLocaleDateString("en-US", options);
+  const timeOptions = {
+    hour: "2-digit", // '00'
+    minute: "2-digit", // '00'
+    hour12: true, // Use 24-hour time
+  };
+  // Format the date
+  const formattedDate = date.toLocaleString("en-US", options);
+  const formatedTime = date.toLocaleString("en-US", timeOptions);
+
+  const output = { time: formatedTime, date: formattedDate };
+  return output;
 };
 
 export const isJoiningDateThisMonth = (member) => {

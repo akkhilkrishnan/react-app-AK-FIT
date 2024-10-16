@@ -8,10 +8,10 @@ const SideNavBar = () => {
 
   const [menuList, setMenuList] = useState([
     "Dashboard",
-    // "Member Attendance",
+    "Member Details",
+    "Attendance",
     "Design Workout",
-    "View Member Details",
-    "Add New Member",
+    "Add Member",
     // "Add Workouts",
     // "Employee Payroll",
     // "Meal plans",
@@ -25,18 +25,14 @@ const SideNavBar = () => {
     <div className="side-bar">
       <Navbar>
         <Nav>
-          <p
-            style={{ textAlign: "left", paddingLeft: "20px", fontSize: "14px" }}
-          >
-            Navigation
-          </p>
+          {/* <p>Navigation</p> */}
           <div className="nav-container">
             {menuList.map((menuItem, index) => {
               // console.log('seletesds:::', selected[index])
               return (
                 <div
                   className={
-                    menuItem == activeTab
+                    menuItem === activeTab
                       ? "nav-selected-style nav-menu"
                       : "nav-menu"
                   }
@@ -45,9 +41,11 @@ const SideNavBar = () => {
                 >
                   <span className="nav-img-style">
                     <img
-                      src="assets/images/member.svg"
+                      src={`assets/images/${menuList[index]
+                        .replace(/\s+/g, "")
+                        .toLowerCase()}.svg`}
                       style={{ margin: "0px 8px 0 0" }}
-                      alt="loading"
+                      alt=""
                     />
                   </span>
                   {menuItem}
